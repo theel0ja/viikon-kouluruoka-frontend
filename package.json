@@ -1,0 +1,26 @@
+{
+  "name": "viikon-kouluruoka-frontend",
+  "version": "0.1.0",
+  "description": "Viikon kouluruoka frontend",
+  "main": "src/server.ts",
+  "repository": "https://github.com/theel0ja/viikon-kouluruoka-frontend.git",
+  "author": "Elias Ojala",
+  "private": true,
+  "scripts": {
+    "start": "nodemon",
+    "build": "npm run build-ts && npm run tslint",
+    "build-ts": "tsc",
+    "tslint": "tslint -c tslint.json -p tsconfig.json"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "twig": "^1.11.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "nodemon": "^1.17.4",
+    "ts-node": "^6.0.3",
+    "typescript": "^2.8.3"
+  }
+}

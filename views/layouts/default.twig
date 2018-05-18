@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {# Settings etc #}
+    <meta name="twitter:widgets:csp" content="on">
+    
+    <meta name="format-detection" content="telephone=no">
+
+    {# Privacy #}
+    <meta name="twitter:dnt" content="on">
+
+
+    {# SEO #}
+    {% if title %}
+    <title>{{ title|e }}</title>
+    {% else %}
+    <!-- Get APP_NAME from config etc -->
+    <title>APP_NAME</title>
+    {% endif %}
+
+    {# Description #}
+    {% if description %}
+    <meta name="description" content="{{ description|e }}">
+    {% endif %}
+
+    {# Robots #}
+    {% if robots %}
+    <meta name="robots" content="{{ robots|e }}">
+    {% endif %}
+
+    
+
+    {# CSS #}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous" />
+
+    {# Other CSS #}
+    {% block stylesheets %}{% endblock %}
+  </head>
+
+  <body>
+
+    {# Navbar #}
+    {% include 'navbar.twig' %}
+
+    {# Notifications #}
+    <!--[if IE]>
+      <div class="alert alert-danger">
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="https://www.mozilla.org/en-US/firefox/" class="alert-link">upgrade your browser</a>
+        to improve your experience and security.
+      </div>
+    <![endif]-->
+    <noscript>
+      <div class="alert alert-warning">
+        <h4 class="alert-heading">Please enable JavaScript</h4>
+        <p class="mb-0">
+          Please <a href="https://www.enable-javascript.com/" class="alert-link">enable JavaScript</a> to improve your experience on this website.
+        </p>
+      </div>
+    </noscript>
+
+    {# Body #}
+    <main class="container">
+      {% block body %}{% endblock %}
+    </main>
+
+    {# TODO: Footer #}
+    {# <footer class="container">
+      Footer
+    </footer> #}
+    
+    {# Bootstrap JS #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha256-5+02zu5UULQkO7w1GIr6vftCgMfFdZcAHeDtFnKZsBs=" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.theel0ja.info/libs/bsmenu-4/bsmenu.js"></script>
+
+    {# Other JavaScript #}
+    {% block javascripts %}{% endblock %}
+  </body>
+
+</html>

@@ -3,4 +3,16 @@
 {% block body %}
   <h1>{{ title|e }}</h1>
   <p>List of restaurants.</p>
+
+  <ul id="restaurantList">
+    {% for restaurant in restaurants %}
+      <li><a href="/restaurants/{{ restaurant.id }}">{{ restaurant.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+{% block javascripts %}
+  <script>
+    const restaurants = {{ restaurantsJson }};
+  </script>
 {% endblock %}

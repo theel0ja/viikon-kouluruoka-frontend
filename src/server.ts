@@ -6,7 +6,7 @@ import twig from "twig";
 dotenv.config();
 
 // Import RestaurantController from controllers entry point
-import { /* CategoryController,  */RestaurantController } from "./controllers";
+import { RestaurantController } from "./controllers";
 
 twig.extendFunction("getenv", (name: string) => {
   return process.env[name];

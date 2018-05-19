@@ -4,11 +4,14 @@
   <h1>{{ title|e }}</h1>
   <p>List of restaurants.</p>
 
-  <ul id="restaurantList">
-    {% for restaurant in restaurants %}
-      <li><a href="/restaurants/{{ restaurant.id }}">{{ restaurant.name }}</a></li>
-    {% endfor %}
-  </ul>
+  {% for category in categories %}
+    <h3>{{category.name}}</h3>
+    <ul>
+      {% for restaurant in restaurants if restaurant.category == category.id %}
+        <li><a href="/restaurants/{{ restaurant.id }}">{{ restaurant.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
 {% endblock %}
 
 {% block javascripts %}

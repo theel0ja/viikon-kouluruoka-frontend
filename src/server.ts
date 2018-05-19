@@ -8,6 +8,10 @@ dotenv.config();
 // Import RestaurantController from controllers entry point
 import { /* CategoryController,  */RestaurantController } from "./controllers";
 
+twig.extendFunction("getenv", (name: string) => {
+  return process.env[name];
+});
+
 // Create a new express application instance
 const app: express.Application = express();
 app.disable("x-powered-by");

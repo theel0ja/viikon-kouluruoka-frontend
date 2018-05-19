@@ -18,8 +18,7 @@
     {% if title %}
     <title>{{ title|e }}</title>
     {% else %}
-    <!-- Get APP_NAME from config etc -->
-    <title>APP_NAME</title>
+    <title>{{ getenv("APP_NAME") }}</title>
     {% endif %}
 
     {# Description #}

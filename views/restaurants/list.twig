@@ -5,10 +5,23 @@
   <p>List of restaurants.</p>
 
   {% for category in categories %}
-    <h3>{{category.name}}</h3>
+    <h3 id="category-{{ category.id }}">{{category.name}}</h3>
     <ul>
       {% for restaurant in restaurants if restaurant.category == category.id %}
         <li><a href="/restaurants/{{ restaurant.id }}">{{ restaurant.name }}</a></li>
+      {% else %}
+        <!-- TODO: Make better solution! -->
+        <noscript>
+          <style>
+            #category-{{ category.id }} {
+              visibility: hidden;
+            }
+          </style>
+        </noscript>
+        
+        <script>
+          document.getElementById("category-{{ category.id }}").outerHTML = "";
+        </script>
       {% endfor %}
     </ul>
   {% endfor %}

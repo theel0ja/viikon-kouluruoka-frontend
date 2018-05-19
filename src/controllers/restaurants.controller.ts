@@ -30,14 +30,22 @@ router.get("/", (req: Request, res: Response, next: NextFunction) => {
  * Show information of a restaurant.
  */
 router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
-  axios.get(process.env.API_BACKEND + "/restaurants")
-  .then((response) => response.data)
-  .then((data) => data.find((x) => x.id === req.params.id))
-  .then((data) => {
+  Promise.all([
+    axios.get(process.env.API_BACKEND + "/restaurants"),
+    axios.get(process.env.API_BACKEND + "/categories"),
+  ])
+  .then(([restaurantsResponse, categoriesResponse]) => {
+    const restaurantsData = restaurantsResponse.data;
+    const categoriesData = categoriesResponse.data;
+
+    const restaurantData = restaurantsData.find((x) => x.id === req.params.id);
+
     res.render("restaurants/show.twig", {
-      title: data.name,
-      restaurant: data,
-      dataJson: JSON.stringify(data),
+      title: restaurantData.name,
+      restaurant: restaurantData,
+      categories: categoriesData,
+      restaurantJson: JSON.stringify(restaurantData),
+      categoriesJson: JSON.stringify(categoriesData),
     });
   })
   .catch(next);

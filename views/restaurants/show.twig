@@ -11,6 +11,8 @@
     {% endfor %}
     <li><b>Category name</b>: {{ categoryName }}</li>
   </ul>
+  <!-- FIXME: Do not hardcode the url -->
+  <a href="https://ruokalistatkoulutjapaivakodit.arkea.fi/#/{{ restaurant.id }}">Show original</a>
 {% endblock %}
 
 {% block javascripts %}

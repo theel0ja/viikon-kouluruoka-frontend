@@ -21,7 +21,6 @@ const port: (string | number) = process.env.PORT || 3000;
 
 // Mount the RestaurantController at the /restaurants route
 app.use("/restaurants", RestaurantController);
-// app.use("/categories", CategoryController);
 
 // Serve the application at the given port
 app.listen(port, () => {

@@ -1,6 +1,9 @@
 // Import everything from express and assign it to the express variable
+import dotenv from "dotenv";
 import express from "express";
 import twig from "twig";
+
+dotenv.config();
 
 // Import RestaurantController from controllers entry point
 import { /* CategoryController,  */RestaurantController } from "./controllers";

@@ -7,7 +7,7 @@ const router: Router = Router();
  * List all restaurants.
  */
 router.get("/", (req: Request, res: Response, next: NextFunction) => {
-  axios.get("http://localhost:3001/restaurants")
+  axios.get(process.env.API_BACKEND + "/restaurants")
   .then((response) => response.data)
   .then((data) => {
     res.render("restaurants/list.twig", {
@@ -15,14 +15,15 @@ router.get("/", (req: Request, res: Response, next: NextFunction) => {
       restaurants: data,
       dataJson: JSON.stringify(data),
     });
-  });
+  })
+  .catch(next);
 });
 
 /**
  * Show information of a restaurant.
  */
 router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
-  axios.get("http://localhost:3001/restaurants")
+  axios.get(process.env.API_BACKEND + "/restaurants")
   .then((response) => response.data)
   .then((data) => data.find((x) => x.id === req.params.id))
   .then((data) => {
@@ -31,7 +32,8 @@ router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
       restaurant: data,
       dataJson: JSON.stringify(data),
     });
-  });
+  })
+  .catch(next);
 });
 
 export const RestaurantController: Router = router;

@@ -39,10 +39,12 @@ router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
     const categoriesData = categoriesResponse.data;
 
     const restaurantData = restaurantsData.find((x) => x.id === req.params.id);
+    const categoryName = categoriesData.find((x) => x.id === restaurantData.category).name;
 
     res.render("restaurants/show.twig", {
       title: restaurantData.name,
       restaurant: restaurantData,
+      categoryName,
       categories: categoriesData,
       restaurantJson: JSON.stringify(restaurantData),
       categoriesJson: JSON.stringify(categoriesData),

@@ -7,9 +7,7 @@
 
     {# Settings etc #}
     <meta name="twitter:widgets:csp" content="on">
-    
     <meta name="format-detection" content="telephone=no">
-
     {# Privacy #}
     <meta name="twitter:dnt" content="on">
 
@@ -36,15 +34,16 @@
 
     {# Open Graph #}
     <meta property="og:site_name" content="{{ getenv("APP_NAME") }}" />
-
     <meta property="og:type" content="website" />
     
+    {# Image #}
     {% if image %}
       <meta property="og:image" content="{{ image|e }}" />
     {% else %}
       <meta property="og:image" content="/android-chrome-512x512.png" />
     {% endif %}
 
+    {# Canonical URL #}
     {# <link rel="canonical" href="canonicalUrl" />
     <meta property="og:url" content="canonicalUrl" /> #}
 
@@ -61,9 +60,6 @@
 
     {# CSS #}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous" />
-
-    {# Style-related stuff #}
-    {# <meta name="theme-color" content="#f8f9fa"> #}{# Bootstrap navigation menu color #}
 
     {# Other CSS #}
     {% block stylesheets %}{% endblock %}

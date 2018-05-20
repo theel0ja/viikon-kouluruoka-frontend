@@ -16,9 +16,11 @@
 
     {# SEO #}
     {% if title %}
-    <title>{{ title|e }}</title>
+      <title>{{ title|e }}</title>
+      <meta property="og:title" content="{{ title|e }}" />
     {% else %}
-    <title>{{ getenv("APP_NAME") }}</title>
+      <title>{{ getenv("APP_NAME") }}</title>
+      <meta property="og:title" content="{{ getenv("APP_NAME") }}" />
     {% endif %}
 
     {# Description #}
@@ -30,6 +32,15 @@
     {% if robots %}
     <meta name="robots" content="{{ robots|e }}">
     {% endif %}
+
+    {# Open Graph #}
+    <meta property="og:site_name" content="{{ getenv("APP_NAME") }}" />
+    <meta property="og:type" content="website" />
+    
+    {# <meta property="og:image" content="https://www.eliasojala.me/content/images/2018/03/Background-image.jpg" /> #}
+
+    {# <link rel="canonical" href="canonicalUrl" />
+    <meta property="og:url" content="canonicalUrl" /> #}
 
     
 

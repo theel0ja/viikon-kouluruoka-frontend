@@ -5,11 +5,11 @@
   <p>List of restaurants.</p>
 
   {% for category in categories %}
-    <h3 id="category-{{ category.id }}">
+    <h3 id="h3-category-{{ category.id }}">
       <a name="category-{{ category.id }}"></a>
       {{category.name}}
     </h3>
-    <ul>
+    <ul id="ul-category-{{ category.id }}">
       {% for restaurant in restaurants if restaurant.category == category.id %}
         <li><a href="/restaurants/{{ restaurant.id }}">{{ restaurant.name }}</a></li>
       {% else %}
@@ -19,7 +19,8 @@
         </noscript>
         
         <script>
-          document.getElementById("category-{{ category.id }}").outerHTML = "";
+          document.getElementById("h3-category-{{ category.id }}").outerHTML = "";
+          document.getElementById("ul-category-{{ category.id }}").outerHTML = "";
         </script>
       {% endfor %}
     </ul>

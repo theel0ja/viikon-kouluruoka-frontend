@@ -132,6 +132,29 @@ function createTh(scope, innerHTML) {
   return element;
 }
 
+// createTbody
+function createTbody() {
+  let element = document.createElement("tbody");
+
+  return element;
+}
+
+// createTr
+function createTr() {
+  let element = document.createElement("tr");
+
+  return element;
+}
+
+// createTd
+function createTd(innerHTML) {
+  let element = document.createElement("td");
+
+  element.innerHTML = innerHTML;
+
+  return element;
+}
+
 // createDayCard (p)
 function createDayCard (data) {
   let card = createCard();
@@ -169,6 +192,28 @@ function createDayCard (data) {
     table.appendChild(theadTr);
   })(table);
   // End cardBody->table->thead->tr
+
+  // Start cardBody->table->tbody
+  let tbody = createTbody();
+
+  // Start cardBody->table->tbody->tr[]
+  data.meals.forEach(function(meal) {
+    let tr = createTr();
+
+    let thType = createTh("row", meal.type);
+    tr.appendChild(thType);
+
+    let tdDescription = createTd(meal.description);
+    tr.appendChild(tdDescription);
+
+    tbody.appendChild(tr);
+  });
+  // End cardBody->table->tbody->tr
+
+  table.appendChild(tbody);
+  // End cardBody->table->tbody
+
+
 
   cardBody.appendChild(table);
   // End cardBody->table

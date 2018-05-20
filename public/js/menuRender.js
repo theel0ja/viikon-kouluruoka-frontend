@@ -1,10 +1,15 @@
-/**
+/*
  * (i) = Internal
  * (p) = Public
  * (g) = Global
  * 
  * ^ Clean up those
  */
+
+
+
+let counter = 0;
+
 
 // navItemCreator (i)
 function createNavItem () {
@@ -14,19 +19,23 @@ function createNavItem () {
   return element;
 }
 
-function createNavLink (tabName) {
+function createNavLink (tabName, active) {
   let element = document.createElement("a");
   element.classList.add("nav-link");
-  element.href = "#" + tabName;
 
   element.dataset.toggle = "tab";
+  element.href = "#" + tabName;
+
+  if( active === true ) {
+    element.classList.add("active");
+  }
 
   return element;
 }
 
-function navItemCreator (id, text) {
+function navItemCreator (id, text, active) {
   let navItem = createNavItem();
-  let navItemLink = createNavLink(id);
+  let navItemLink = createNavLink(id, active);
 
   navItemLink.text = text;
 
@@ -38,7 +47,7 @@ function navItemCreator (id, text) {
 }
 
 // menuRenderNavItems (p)
-function menuRenderNavItems (data) {
+function menuRenderNavItems (data, active) {
   let navItemText;
 
   if(data.name) {
@@ -47,19 +56,23 @@ function menuRenderNavItems (data) {
     navItemText = data.id; // FIXME: Use something else!
   }
 
-  const navItem = navItemCreator(data.id, navItemText);
+  const navItem = navItemCreator(data.id, navItemText, active);
 
   return navItem;
 }
 
 
 // createTabPane (p)
-function createTabPane (id) {
+function createTabPane (id, active) {
   let element = document.createElement("div");
   element.classList.add("tab-pane");
   element.classList.add("fade");
-  // element.classList.add("show");
   element.id = id;
+
+  if (active === true) {
+    element.classList.add("show");
+    element.classList.add("active");
+  }
 
   // Return element
   return element;
@@ -226,18 +239,30 @@ function createDayCard (data) {
   return card;
 }
 
-// menuRender (g)
+/**
+ * Render menu element, gets called by JSONP
+ * @param {*} data 
+ */
 function menuRender (data) { // eslint-disable-line no-unused-vars
   // Elements
   const menuTabList = document.getElementById("menuTabList");
   const tabPaneContainer = document.getElementById("tabPaneContainer");
 
+  let active;
+
+  if(counter === 0) {
+    counter = 1;
+    active = true;
+  } else {
+    active = false;
+  }
+
   // Nav items
-  const navItem = menuRenderNavItems(data);
+  const navItem = menuRenderNavItems(data, active);
   menuTabList.appendChild(navItem);
 
   // Tab panes
-  let tabPane = createTabPane(data.id);
+  let tabPane = createTabPane(data.id, active);
 
 
 

@@ -37,13 +37,14 @@ if (production) {
 app.use(lusca.csp({
   /* tslint:disable:object-literal-sort-keys */
   policy: {
-      "default-src": "'none'",
-      "manifest-src": "'self'",
-      "img-src": "'self' data:",
-      "style-src": "https://cdnjs.cloudflare.com",
-      "script-src": "'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
-      "report-uri": cspReportUri,
-      "block-all-mixed-content": "",
+    "default-src": "'none'",
+    "manifest-src": "'self'",
+    "img-src": "'self' data:",
+    "style-src": "https://cdnjs.cloudflare.com",
+    // tslint:disable-next-line:max-line-length
+    "script-src": "'self' https://viikonkouluruoka-api-arkea.herokuapp.com/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
+    "report-uri": cspReportUri,
+    "block-all-mixed-content": "",
   },
   /* tslint:enable:object-literal-sort-keys */
 }));

@@ -18,6 +18,10 @@ twig.extendFunction("getenv", (name: string) => {
 
 const production = process.env.NODE_ENV === "production";
 
+twig.extendFunction("isProd", () => {
+  return production.toString();
+});
+
 // Create a new express application instance
 const app: express.Application = express();
 app.disable("x-powered-by");

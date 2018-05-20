@@ -45,6 +45,8 @@ app.use(lusca.csp({
   /* tslint:enable:object-literal-sort-keys */
 }));
 
+app.use(express.static("public"));
+
 // Mount the RestaurantController at the /restaurants route
 app.use("/restaurants", RestaurantController);
 

@@ -35,9 +35,14 @@
 
     {# Open Graph #}
     <meta property="og:site_name" content="{{ getenv("APP_NAME") }}" />
+
     <meta property="og:type" content="website" />
     
-    {# <meta property="og:image" content="https://www.eliasojala.me/content/images/2018/03/Background-image.jpg" /> #}
+    {% if image %}
+      <meta property="og:image" content="{{ image|e }}" />
+    {% else %}
+      <meta property="og:image" content="/android-chrome-512x512.png" />
+    {% endif %}
 
     {# <link rel="canonical" href="canonicalUrl" />
     <meta property="og:url" content="canonicalUrl" /> #}

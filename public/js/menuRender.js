@@ -1,5 +1,7 @@
+// navItemCreator
+
 function createNavItem() {
-  let element = document.createElement("div");
+  let element = document.createElement("li");
   element.classList.add("nav-item");
 
   return element;
@@ -28,10 +30,28 @@ function navItemCreator(id, text) {
   return navItem;
 }
 
+// tabPaneCreator
+
+function createTabPane(id) {
+  let element = document.createElement("div");
+  element.classList.add("tab-pane");
+  element.classList.add("fade");
+  // element.classList.add("show");
+  element.id = id;
+
+  // Return element
+  return element;
+}
+
+
+
 // eslint-disable-next-line no-unused-vars
 function menuRender (data) {
+  // Elements
   const menuTabList = document.getElementById("menuTabList");
+  const tabPaneContainer = document.getElementById("tabPaneContainer");
 
+  // Nav items
   let navItemText;
 
   if(data.name) {
@@ -43,4 +63,14 @@ function menuRender (data) {
   const navItem = navItemCreator(data.id, navItemText);
 
   menuTabList.appendChild(navItem);
+
+  // Tab panes
+  let tabPane = createTabPane(data.id);
+
+  let lorem = document.createElement("p");
+  lorem.innerHTML = "Ex exercitation officia ad officia ullamco id reprehenderit dolor non. Sunt aliqua aliquip Lorem laboris nulla. Nulla ea eu nostrud irure. Duis eu velit velit sunt. Qui incididunt proident ullamco nostrud aute deserunt velit Lorem anim aliquip Lorem non dolore cillum. Minim cillum et incididunt magna anim fugiat pariatur in amet pariatur ullamco exercitation nulla.";
+
+  tabPane.appendChild(lorem);
+
+  tabPaneContainer.appendChild(tabPane);  
 }

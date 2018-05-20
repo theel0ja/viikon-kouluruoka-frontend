@@ -5,6 +5,7 @@ import express from "express";
 import minify from "express-minify";
 import sslRedirect from "heroku-ssl-redirect";
 import lusca from "lusca";
+import Raven from "raven";
 import twig from "twig";
 
 dotenv.config();
@@ -17,6 +18,10 @@ twig.extendFunction("getenv", (name: string) => {
 });
 
 const production = process.env.NODE_ENV === "production";
+
+if (production) {
+  Raven.config("https://fd3c65ae8bde436ca0b32183a6099b44@sentry.io/1209758").install();
+}
 
 twig.extendFunction("isProd", () => {
   return production.toString();

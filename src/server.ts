@@ -47,6 +47,9 @@ app.use(lusca.csp({
   /* tslint:enable:object-literal-sort-keys */
 }));
 
+app.use(lusca.xframe("DENY"));
+app.use(lusca.referrerPolicy("no-referrer-when-downgrade"));
+
 app.use(compression());
 app.use(minify());
 app.use(express.static("public"));

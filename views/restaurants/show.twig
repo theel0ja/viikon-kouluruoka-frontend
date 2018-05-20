@@ -3,7 +3,16 @@
 {% block body %}
   <h1>{{ restaurant.name }}</h1>
 
-  <div id="menuContainer" class="row"></div>
+  <div id="menuContainer">
+    <ul class="nav nav-tabs" id="menuTabList">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#profile">Profile</a>
+      </li>
+    </ul>
+  </div>
 
   <h3>Raw data</h3>
   <ul>

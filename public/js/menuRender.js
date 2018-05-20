@@ -1,15 +1,46 @@
+function createNavItem() {
+  let element = document.createElement("div");
+  element.classList.add("nav-item");
+
+  return element;
+}
+
+function createNavLink(tabName) {
+  let element = document.createElement("a");
+  element.classList.add("nav-link");
+  element.href = "#" + tabName;
+
+  element.dataset.toggle = "tab";
+
+  return element;
+}
+
+function navItemCreator(id, text) {
+  let navItem = createNavItem();
+  let navItemLink = createNavLink(id);
+
+  navItemLink.text = text;
+
+  // Append navItemLink to navItem
+  navItem.appendChild(navItemLink);
+
+  // Return navItem
+  return navItem;
+}
+
 // eslint-disable-next-line no-unused-vars
 function menuRender (data) {
-  const menuContainer = document.getElementById("menuContainer");
+  const menuTabList = document.getElementById("menuTabList");
 
+  let navItemText;
 
-  let card = document.createElement("div");
-  card.classList.add("col-md");
-  card.classList.add("card");
+  if(data.name) {
+    navItemText = data.name;
+  } else {
+    navItemText = data.id; // FIXME: Use something else!
+  }
 
-  card.innerHTML = `<pre>${JSON.stringify(data, "", 2)}</pre>`;
+  const navItem = navItemCreator(data.id, navItemText);
 
-  menuContainer.appendChild(card);
-
-  // console.log(data);
+  menuTabList.appendChild(navItem);
 }

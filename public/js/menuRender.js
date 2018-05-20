@@ -1,5 +1,4 @@
-// navItemCreator
-
+// navItemCreator (i)
 function createNavItem () {
   let element = document.createElement("li");
   element.classList.add("nav-item");
@@ -30,6 +29,7 @@ function navItemCreator (id, text) {
   return navItem;
 }
 
+// menuRenderNavItems (p)
 function menuRenderNavItems (data) {
   let navItemText;
 
@@ -44,8 +44,8 @@ function menuRenderNavItems (data) {
   return navItem;
 }
 
-// tabPaneCreator
 
+// createTabPane (p)
 function createTabPane (id) {
   let element = document.createElement("div");
   element.classList.add("tab-pane");
@@ -55,6 +55,51 @@ function createTabPane (id) {
 
   // Return element
   return element;
+}
+
+
+// createCard (i)
+function createCard () {
+  let element = document.createElement("div");
+  element.classList.add("card");
+
+  // Return element
+  return element;
+}
+
+function createCardText (innerHTML) {
+  let element = document.createElement("p");
+  element.classList.add("card-text");
+
+  element.innerHTML = innerHTML;
+
+  return element;
+}
+
+function createCardBody () {
+  let element = document.createElement("div");
+  element.classList.add("card-body");
+
+  // Return element
+  return element;
+}
+
+// createDayCard (p)
+function createDayCard (data) {
+  let card = createCard();
+  card.style.width = "36rem";
+  
+  // Start cardBody
+  let cardBody = createCardBody();
+  
+  let cardText = createCardText("<pre>" + JSON.stringify(data, true, 2) + "</pre>");
+  
+  cardBody.appendChild(cardText);
+  // End cardBody
+  
+
+  card.appendChild(cardBody);
+  return card;
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -70,10 +115,16 @@ function menuRender (data) {
   // Tab panes
   let tabPane = createTabPane(data.id);
 
-  let jsonDebug = document.createElement("pre");
-  jsonDebug.innerHTML = JSON.stringify(data, true, 2);
 
-  tabPane.appendChild(jsonDebug);
 
+  // Create card
+  data.days.forEach(function(data) {
+    let card = createDayCard(data);
+    
+    tabPane.appendChild(card);
+  });
+
+
+  // Add tabPane to tabPaneContainer
   tabPaneContainer.appendChild(tabPane);  
 }

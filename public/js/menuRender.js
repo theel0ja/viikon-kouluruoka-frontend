@@ -30,6 +30,20 @@ function navItemCreator(id, text) {
   return navItem;
 }
 
+function menuRenderNavItems(data) {
+  let navItemText;
+
+  if(data.name) {
+    navItemText = data.name;
+  } else {
+    navItemText = data.id; // FIXME: Use something else!
+  }
+
+  const navItem = navItemCreator(data.id, navItemText);
+
+  return navItem;
+}
+
 // tabPaneCreator
 
 function createTabPane(id) {
@@ -43,8 +57,6 @@ function createTabPane(id) {
   return element;
 }
 
-
-
 // eslint-disable-next-line no-unused-vars
 function menuRender (data) {
   // Elements
@@ -52,25 +64,17 @@ function menuRender (data) {
   const tabPaneContainer = document.getElementById("tabPaneContainer");
 
   // Nav items
-  let navItemText;
-
-  if(data.name) {
-    navItemText = data.name;
-  } else {
-    navItemText = data.id; // FIXME: Use something else!
-  }
-
-  const navItem = navItemCreator(data.id, navItemText);
+  const navItem = menuRenderNavItems(data);
 
   menuTabList.appendChild(navItem);
 
   // Tab panes
   let tabPane = createTabPane(data.id);
 
-  let lorem = document.createElement("p");
-  lorem.innerHTML = "Ex exercitation officia ad officia ullamco id reprehenderit dolor non. Sunt aliqua aliquip Lorem laboris nulla. Nulla ea eu nostrud irure. Duis eu velit velit sunt. Qui incididunt proident ullamco nostrud aute deserunt velit Lorem anim aliquip Lorem non dolore cillum. Minim cillum et incididunt magna anim fugiat pariatur in amet pariatur ullamco exercitation nulla.";
+  let jsonDebug = document.createElement("pre");
+  jsonDebug.innerHTML = JSON.stringify(data, true, 2);
 
-  tabPane.appendChild(lorem);
+  tabPane.appendChild(jsonDebug);
 
   tabPaneContainer.appendChild(tabPane);  
 }

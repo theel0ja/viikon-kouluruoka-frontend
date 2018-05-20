@@ -47,6 +47,12 @@
   </ul>
   {# FIXME: Do not hardcode the url #}
   <a href="https://ruokalistatkoulutjapaivakodit.arkea.fi/#/{{ restaurant.id }}">Show original</a>
+
+  <script src="/js/menuRender.js"></script>
+
+  {% for menu in restaurant.menus %}
+    <script src="{{ getenv("API_BACKEND") }}/menus/{{ menu.id }}?callback=menuRender"></script>
+  {% endfor %}
 {% endblock %}
 
 {% block javascripts %}
@@ -54,10 +60,4 @@
     const restaurantData = {{ restaurantJson }};
     const categoriesData = {{ categoriesJson }};
   </script> #}
-
-  <script src="/js/menuRender.js"></script>
-
-  {% for menu in restaurant.menus %}
-    <script src="{{ getenv("API_BACKEND") }}/menus/{{ menu.id }}?callback=menuRender"></script>
-  {% endfor %}
 {% endblock %}

@@ -17,8 +17,11 @@ router.get("/", (req: Request, res: Response, next: NextFunction) => {
 
     res.render("restaurants/list.twig", {
       title: "List of restaurants",
+      description: "List of restaurants.",
+
       restaurants: restaurantsData,
       categories: categoriesData,
+
       restaurantsJson: JSON.stringify(restaurantsData),
       categoriesJson: JSON.stringify(categoriesData),
     });

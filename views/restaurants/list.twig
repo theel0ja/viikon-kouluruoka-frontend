@@ -2,7 +2,7 @@
 
 {% block body %}
   <h1>{{ title|e }}</h1>
-  <p>List of restaurants.</p>
+  <p>{{ description|e }}</p>
 
   {% for category in categories %}
     <h3 id="h3-category-{{ category.id }}">

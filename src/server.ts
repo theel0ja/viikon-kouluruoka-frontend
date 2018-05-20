@@ -8,7 +8,7 @@ import twig from "twig";
 dotenv.config();
 
 // Import RestaurantController from controllers entry point
-import { RestaurantController } from "./controllers";
+import { HomeController, RestaurantController } from "./controllers";
 
 twig.extendFunction("getenv", (name: string) => {
   return process.env[name];
@@ -48,7 +48,8 @@ app.use(lusca.csp({
 app.use(express.static("public"));
 
 // Mount the RestaurantController at the /restaurants route
-app.use("/restaurants", RestaurantController);
+app.use("/", HomeController);
+app.use("/restaurants/", RestaurantController);
 
 // The port the express app will listen on
 const port: (string | number) = process.env.PORT || 3000;

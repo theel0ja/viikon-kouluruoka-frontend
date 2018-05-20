@@ -34,15 +34,18 @@ if (production) {
   cspReportUri = "/api/csp-report-dev";
 }
 
+const gAnalyticsImgSrc = "https://www.google-analytics.com";
+const gAnalyticsScriptSrc = "https://www.googletagmanager.com https://www.google-analytics.com";
+
 app.use(lusca.csp({
   /* tslint:disable:object-literal-sort-keys */
   policy: {
     "default-src": "'none'",
     "manifest-src": "'self'",
-    "img-src": "'self' data:",
+    "img-src": gAnalyticsImgSrc + " " + "'self' data:",
     "style-src": "https://cdnjs.cloudflare.com",
     // tslint:disable-next-line:max-line-length
-    "script-src": "'self' " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info https://www.googletagmanager.com https://www.google-analytics.com",
+    "script-src": gAnalyticsScriptSrc + " " + "'self' " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
     "report-uri": cspReportUri,
     "block-all-mixed-content": "",
   },

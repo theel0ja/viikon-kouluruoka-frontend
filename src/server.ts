@@ -1,8 +1,8 @@
 // Import everything from express and assign it to the express variable
 import dotenv from "dotenv";
 import express from "express";
-import twig from "twig";
 import lusca from "lusca";
+import twig from "twig";
 
 dotenv.config();
 

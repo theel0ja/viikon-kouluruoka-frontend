@@ -35,6 +35,7 @@ app.use(lusca.csp({
       "style-src": "https://cdnjs.cloudflare.com",
       "script-src": "'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
       "report-uri": cspReportUri,
+      "block-all-mixed-content": "",
   },
   /* tslint:enable:object-literal-sort-keys */
 }));

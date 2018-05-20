@@ -20,12 +20,14 @@ const app: express.Application = express();
 app.disable("x-powered-by");
 
 let cspReportUri: string;
-
 if (production) {
   cspReportUri = process.env.REPORT_URI;
 } else {
   cspReportUri = "/api/csp-report-dev";
 }
+
+app.use(lusca.nosniff());
+app.use(lusca.xssProtection(true)); // TODO: Setup Report-URI for this
 
 app.use(lusca.csp({
   /* tslint:disable:object-literal-sort-keys */

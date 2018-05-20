@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "compression": "^1.7.2",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "express-minify": "^1.0.0",
     "heroku-ssl-redirect": "^0.0.4",
     "lusca": "^1.6.0",
     "twig": "^1.11.0",

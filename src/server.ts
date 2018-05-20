@@ -1,6 +1,8 @@
 // Import everything from express and assign it to the express variable
+import compression from "compression";
 import dotenv from "dotenv";
 import express from "express";
+import minify from "express-minify";
 import sslRedirect from "heroku-ssl-redirect";
 import lusca from "lusca";
 import twig from "twig";
@@ -45,6 +47,8 @@ app.use(lusca.csp({
   /* tslint:enable:object-literal-sort-keys */
 }));
 
+app.use(compression());
+app.use(minify());
 app.use(express.static("public"));
 
 // Mount the RestaurantController at the /restaurants route

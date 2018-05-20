@@ -76,14 +76,14 @@ function createCard () {
 }
 
 // createCardText (i)
-function createCardText (innerHTML) {
+/* function createCardText (innerHTML) {
   let element = document.createElement("p");
   element.classList.add("card-text");
 
   element.innerHTML = innerHTML;
 
   return element;
-}
+} */
 
 // createCardBody (i)
 function createCardBody () {

@@ -1,3 +1,9 @@
+/**
+ * (i) = Internal
+ * (p) = Public
+ * (g) = Global
+ */
+
 // navItemCreator (i)
 function createNavItem () {
   let element = document.createElement("li");
@@ -67,6 +73,7 @@ function createCard () {
   return element;
 }
 
+// createCardText (i)
 function createCardText (innerHTML) {
   let element = document.createElement("p");
   element.classList.add("card-text");
@@ -76,6 +83,7 @@ function createCardText (innerHTML) {
   return element;
 }
 
+// createCardBody (i)
 function createCardBody () {
   let element = document.createElement("div");
   element.classList.add("card-body");
@@ -84,6 +92,7 @@ function createCardBody () {
   return element;
 }
 
+// createCardBody
 function createCardHeader (innerHTML) {
   let element = document.createElement("p");
   element.classList.add("card-header");
@@ -93,6 +102,7 @@ function createCardHeader (innerHTML) {
   return element;
 }
 
+// CreateTabPane
 function createTable() {
   let element = document.createElement("table");
   element.classList.add("table");
@@ -111,6 +121,7 @@ function createTheadWithTr() {
   return thead;
 }
 
+// createTh
 function createTh(scope, innerHTML) {
   let element = document.createElement("th");
 
@@ -143,18 +154,20 @@ function createDayCard (data) {
   let table = createTable();
 
   // Start cardBody->table->thead->tr
-  let theadTr = createTheadWithTr();
-
-  // Start Create some <th> elements
-  theadTr.appendChild(
-    createTh("col", "Type")
-  );
-  theadTr.appendChild(
-    createTh("col", "Description")
-  );
-  // End Create some <th> elements
-
-  table.appendChild(theadTr);
+  (function() {
+    let theadTr = createTheadWithTr();
+  
+    // Start Create some <th> elements
+    theadTr.appendChild(
+      createTh("col", "Type")
+    );
+    theadTr.appendChild(
+      createTh("col", "Description")
+    );
+    // End Create some <th> elements
+  
+    table.appendChild(theadTr);
+  })(table);
   // End cardBody->table->thead->tr
 
   cardBody.appendChild(table);
@@ -166,8 +179,8 @@ function createDayCard (data) {
   return card;
 }
 
-// eslint-disable-next-line no-unused-vars
-function menuRender (data) {
+// menuRender (g)
+function menuRender (data) { // eslint-disable-line no-unused-vars
   // Elements
   const menuTabList = document.getElementById("menuTabList");
   const tabPaneContainer = document.getElementById("tabPaneContainer");

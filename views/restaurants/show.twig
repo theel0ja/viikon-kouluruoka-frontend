@@ -10,6 +10,22 @@
       <li><b>{{ key }}</b>: {{ value }}</li>
     {% endfor %}
     <li><b>Category name</b>: {{ categoryName }}</li>
+
+    <li>
+      <b>Menus</b>:
+      <ul>
+        {% for menu in restaurant.menus %}
+          <li>
+            <i><b>{{ menu.id }}</b></i>
+            <ul>
+              {% for key, value in menu %}
+                <li><b>{{ key }}</b>: {{ value }}</li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
   </ul>
   {# FIXME: Do not hardcode the url #}
   <a href="https://ruokalistatkoulutjapaivakodit.arkea.fi/#/{{ restaurant.id }}">Show original</a>

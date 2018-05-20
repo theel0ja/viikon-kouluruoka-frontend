@@ -10,7 +10,8 @@
     "start": "nodemon",
     "build": "npm run build-ts && npm run tslint",
     "build-ts": "tsc",
-    "tslint": "tslint -c tslint.json -p tsconfig.json"
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "eslint": "eslint ."
   },
   "dependencies": {
     "axios": "^0.18.0",

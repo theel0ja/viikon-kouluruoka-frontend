@@ -137,6 +137,7 @@ function createDayCard (data) {
 
   // Start cardBody
   let cardBody = createCardBody();
+  cardBody.style.padding = 0; // Disable padding
 
   // Start cardBody->table
   let table = createTable();

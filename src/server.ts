@@ -32,6 +32,7 @@ app.use(lusca.csp({
   /* tslint:disable:object-literal-sort-keys */
   policy: {
       "default-src": "'none'",
+      "img-src": "'self'",
       "style-src": "https://cdnjs.cloudflare.com",
       "script-src": "'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
       "report-uri": cspReportUri,

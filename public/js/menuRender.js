@@ -65,7 +65,6 @@ function menuRender (data) {
 
   // Nav items
   const navItem = menuRenderNavItems(data);
-
   menuTabList.appendChild(navItem);
 
   // Tab panes

@@ -42,7 +42,7 @@ app.use(lusca.csp({
     "img-src": "'self' data:",
     "style-src": "https://cdnjs.cloudflare.com",
     // tslint:disable-next-line:max-line-length
-    "script-src": "'self' https://viikonkouluruoka-api-arkea.herokuapp.com/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
+    "script-src": "'self' " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
     "report-uri": cspReportUri,
     "block-all-mixed-content": "",
   },

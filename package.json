@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon",
-    "build": "npm run build-ts && npm run tslint",
+    "build": "npm run build-ts && npm run tslint && npm run eslint",
     "build-ts": "tsc",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "eslint": "eslint ."

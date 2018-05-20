@@ -1,13 +1,13 @@
 // navItemCreator
 
-function createNavItem() {
+function createNavItem () {
   let element = document.createElement("li");
   element.classList.add("nav-item");
 
   return element;
 }
 
-function createNavLink(tabName) {
+function createNavLink (tabName) {
   let element = document.createElement("a");
   element.classList.add("nav-link");
   element.href = "#" + tabName;
@@ -17,7 +17,7 @@ function createNavLink(tabName) {
   return element;
 }
 
-function navItemCreator(id, text) {
+function navItemCreator (id, text) {
   let navItem = createNavItem();
   let navItemLink = createNavLink(id);
 
@@ -30,7 +30,7 @@ function navItemCreator(id, text) {
   return navItem;
 }
 
-function menuRenderNavItems(data) {
+function menuRenderNavItems (data) {
   let navItemText;
 
   if(data.name) {
@@ -46,7 +46,7 @@ function menuRenderNavItems(data) {
 
 // tabPaneCreator
 
-function createTabPane(id) {
+function createTabPane (id) {
   let element = document.createElement("div");
   element.classList.add("tab-pane");
   element.classList.add("fade");

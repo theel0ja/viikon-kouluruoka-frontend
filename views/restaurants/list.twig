@@ -5,7 +5,10 @@
   <p>List of restaurants.</p>
 
   {% for category in categories %}
-    <h3 id="category-{{ category.id }}">{{category.name}}</h3>
+    <h3 id="category-{{ category.id }}">
+      <a name="category-{{ category.id }}"></a>
+      {{category.name}}
+    </h3>
     <ul>
       {% for restaurant in restaurants if restaurant.category == category.id %}
         <li><a href="/restaurants/{{ restaurant.id }}">{{ restaurant.name }}</a></li>

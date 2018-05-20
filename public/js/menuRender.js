@@ -158,7 +158,7 @@ function createTd(innerHTML) {
 // createDayCard (p)
 function createDayCard (data) {
   let card = createCard();
-  card.style.width = "36rem";
+  // card.style.width = "36rem";
   
   // Start cardHeader
   if(data.dateAsText) {

@@ -93,6 +93,34 @@ function createCardHeader (innerHTML) {
   return element;
 }
 
+function createTable() {
+  let element = document.createElement("table");
+  element.classList.add("table");
+
+  return element;
+}
+
+function createTheadWithTr() {
+  let thead = document.createElement("thead");
+  
+  // Start tr
+  let tr = document.createElement("tr");
+  thead.appendChild(tr);
+  // End tr
+
+  return thead;
+}
+
+function createTh(scope, innerHTML) {
+  let element = document.createElement("th");
+
+  element.scope = scope;
+
+  element.innerHTML = innerHTML;
+
+  return element;
+}
+
 // createDayCard (p)
 function createDayCard (data) {
   let card = createCard();
@@ -106,13 +134,30 @@ function createDayCard (data) {
   }
   // End cardHeader
 
+
   // Start cardBody
   let cardBody = createCardBody();
-  
-  // Start cardBody->cardText
-  let cardText = createCardText("<pre>" + JSON.stringify(data, true, 2) + "</pre>");
-  cardBody.appendChild(cardText);
-  // End cardBody->cardText
+
+  // Start cardBody->table
+  let table = createTable();
+
+  // Start cardBody->table->thead->tr
+  let theadTr = createTheadWithTr();
+
+  // Start Create some <th> elements
+  theadTr.appendChild(
+    createTh("col", "Type")
+  );
+  theadTr.appendChild(
+    createTh("col", "Description")
+  );
+  // End Create some <th> elements
+
+  table.appendChild(theadTr);
+  // End cardBody->table->thead->tr
+
+  cardBody.appendChild(table);
+  // End cardBody->table
   
   card.appendChild(cardBody);
   // End cardBody

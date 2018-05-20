@@ -1,6 +1,7 @@
 // Import everything from express and assign it to the express variable
 import dotenv from "dotenv";
 import express from "express";
+import sslRedirect from "heroku-ssl-redirect";
 import lusca from "lusca";
 import twig from "twig";
 
@@ -18,6 +19,7 @@ const production = process.env.NODE_ENV === "production";
 // Create a new express application instance
 const app: express.Application = express();
 app.disable("x-powered-by");
+app.use(sslRedirect()); // Heroku
 app.use(lusca.nosniff());
 app.use(lusca.xssProtection(true)); // TODO: Setup Report-URI for this
 

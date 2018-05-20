@@ -25,7 +25,8 @@
 
     {# Description #}
     {% if description %}
-    <meta name="description" content="{{ description|e }}">
+      <meta name="description" content="{{ description|e }}">
+      <meta property="og:description" content="{{ description|e }}">
     {% endif %}
 
     {# Robots #}

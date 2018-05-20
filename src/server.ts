@@ -56,6 +56,7 @@ app.use(lusca.csp({
     // tslint:disable-next-line:max-line-length
     "script-src": gAnalyticsScriptSrc + " " + "'self' " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
     "report-uri": cspReportUri,
+    "connect-src": "https://sentry.io",
     "block-all-mixed-content": "",
   },
   /* tslint:enable:object-literal-sort-keys */

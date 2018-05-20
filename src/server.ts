@@ -23,6 +23,8 @@ app.use(sslRedirect(["production"], 301)); // Heroku
 app.use(lusca.nosniff());
 app.use(lusca.xssProtection(true)); // TODO: Setup Report-URI for this
 
+app.use(lusca.hsts({maxAge: 31536000, includeSubDomains: false, preload: false}));
+
 let cspReportUri: string;
 if (production) {
   cspReportUri = process.env.REPORT_URI;

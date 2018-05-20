@@ -19,7 +19,7 @@ const production = process.env.NODE_ENV === "production";
 // Create a new express application instance
 const app: express.Application = express();
 app.disable("x-powered-by");
-app.use(sslRedirect()); // Heroku
+app.use(sslRedirect(["production"], 301)); // Heroku
 app.use(lusca.nosniff());
 app.use(lusca.xssProtection(true)); // TODO: Setup Report-URI for this
 

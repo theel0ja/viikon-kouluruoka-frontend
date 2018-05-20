@@ -2,6 +2,8 @@
  * (i) = Internal
  * (p) = Public
  * (g) = Global
+ * 
+ * ^ Clean up those
  */
 
 // navItemCreator (i)

@@ -4,6 +4,7 @@ function menuRender (data) {
 
 
   let card = document.createElement("div");
+  card.classList.add("col-md");
   card.classList.add("card");
 
   card.innerHTML = `<pre>${JSON.stringify(data, "", 2)}</pre>`;

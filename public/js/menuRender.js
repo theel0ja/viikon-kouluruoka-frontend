@@ -84,21 +84,39 @@ function createCardBody () {
   return element;
 }
 
+function createCardHeader (innerHTML) {
+  let element = document.createElement("p");
+  element.classList.add("card-header");
+
+  element.innerHTML = innerHTML;
+
+  return element;
+}
+
 // createDayCard (p)
 function createDayCard (data) {
   let card = createCard();
   card.style.width = "36rem";
   
+  // Start cardHeader
+  if(data.dateAsText) {
+    let cardHeader = createCardHeader(data.dateAsText);
+  
+    card.appendChild(cardHeader);
+  }
+  // End cardHeader
+
   // Start cardBody
   let cardBody = createCardBody();
   
+  // Start cardBody->cardText
   let cardText = createCardText("<pre>" + JSON.stringify(data, true, 2) + "</pre>");
-  
   cardBody.appendChild(cardText);
-  // End cardBody
+  // End cardBody->cardText
   
-
   card.appendChild(cardBody);
+  // End cardBody
+
   return card;
 }
 

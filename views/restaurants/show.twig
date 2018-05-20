@@ -6,7 +6,7 @@
 
   <h3>Raw data</h3>
   <ul>
-    {% for key, value in restaurant %}
+    {% for key, value in restaurant if key != "menus" %}
       <li><b>{{ key }}</b>: {{ value }}</li>
     {% endfor %}
     <li><b>Category name</b>: {{ categoryName }}</li>

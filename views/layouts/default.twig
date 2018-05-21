@@ -13,15 +13,17 @@
         Raven.config('https://fd3c65ae8bde436ca0b32183a6099b44@sentry.io/1209758').install();
       </script>
 
-      {# Google Analytics (FIXME: Check that env GOOGLE_ANALYTICS_UA exists) #}
-      <script async src="https://www.googletagmanager.com/gtag/js?id={{ getenv("GOOGLE_ANALYTICS_UA") }}"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+      {# Google Analytics #}
+      {% if getEnv("GOOGLE_ANALYTICS_UA") != "UA-XXXXXXXXX-X" %}{# or it's empty (TODO:) #}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ getenv("GOOGLE_ANALYTICS_UA") }}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-        gtag('config', '{{ getenv("GOOGLE_ANALYTICS_UA") }}');
-      </script>
+          gtag('config', '{{ getenv("GOOGLE_ANALYTICS_UA") }}');
+        </script>
+      {% endif %}
     {% endif %}
 
     {# Settings etc #}

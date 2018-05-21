@@ -1,7 +1,7 @@
 // Import everything from express and assign it to the express variable
 import compression from "compression";
 import dotenv from "dotenv";
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import minify from "express-minify";
 import sslRedirect from "heroku-ssl-redirect";
 import lusca from "lusca";
@@ -12,6 +12,7 @@ dotenv.config();
 
 // Import RestaurantController from controllers entry point
 import { HomeController, RestaurantController } from "./controllers";
+import viikonKouluruokaSites from "./viikonKouluruokaSites";
 
 twig.extendFunction("getenv", (name: string) => {
   return process.env[name];
@@ -72,6 +73,10 @@ app.use(express.static("public"));
 // Mount the RestaurantController at the /restaurants route
 app.use("/", HomeController);
 app.use("/restaurants/", RestaurantController);
+
+app.get("/api/sites", (req: Request, res: Response, next: NextFunction) => {
+  res.json(viikonKouluruokaSites);
+});
 
 // The port the express app will listen on
 const port: (string | number) = process.env.PORT || 3000;

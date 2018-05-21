@@ -5,6 +5,10 @@ interface IViikonKouluruokaSites {
 
 const viikonKouluruokaSites: IViikonKouluruokaSites[] = [
   {
+    name: "Turku",
+    url: "https://turku.kouluruoka.eliasojala.me/",
+  },
+  {
     name: "Tampere",
     url: "https://tampere.kouluruoka.eliasojala.me/",
   },

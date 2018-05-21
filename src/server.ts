@@ -53,7 +53,7 @@ app.use(lusca.csp({
     "default-src": "'none'",
     "manifest-src": "'self'",
     "img-src": gAnalyticsImgSrc + " " + "'self' data:",
-    "style-src": "'unsafe-inline' https://cdnjs.cloudflare.com",
+    "style-src": "'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
     // tslint:disable-next-line:max-line-length
     "script-src": gAnalyticsScriptSrc + " " + "'self' " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
     "report-uri": cspReportUri,

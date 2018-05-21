@@ -75,7 +75,7 @@ app.use("/", HomeController);
 app.use("/restaurants/", RestaurantController);
 
 app.get("/api/sites", (req: Request, res: Response, next: NextFunction) => {
-  res.json(viikonKouluruokaSites);
+  res.jsonp(viikonKouluruokaSites);
 });
 
 // The port the express app will listen on

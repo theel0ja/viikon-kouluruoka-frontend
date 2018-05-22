@@ -251,7 +251,7 @@ function menuRender (data) { // eslint-disable-line no-unused-vars
   let active;
 
   if(counter === 0) {
-    counter = 1;
+    counter++;
     active = true;
   } else {
     active = false;

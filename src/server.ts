@@ -33,7 +33,7 @@ const app: express.Application = express();
 app.disable("x-powered-by");
 app.use(sslRedirect(["production"], 301)); // Heroku
 app.use(lusca.nosniff());
-app.use(lusca.xssProtection(true)); // TODO: Setup Report-URI for this
+app.use(lusca.xssProtection(true)); // TODO: Setup Report-URI for this (https://github.com/krakenjs/lusca/issues/124)
 
 app.use(lusca.hsts({maxAge: 31536000, includeSubDomains: false, preload: false}));
 

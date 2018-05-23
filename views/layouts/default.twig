@@ -12,9 +12,14 @@
       <script>
         Raven.config('https://fd3c65ae8bde436ca0b32183a6099b44@sentry.io/1209758').install();
       </script>
+      {# Settings #}
+      <script>
+        const suffix = ".kouluruoka.eliasojala.me";
+        const siteId = document.domain.replace(suffix, "");
+      </script>
 
-      {# Google Analytics #}
       {% if getenv("GOOGLE_ANALYTICS_UA") != "UA-XXXXXXXXX-X" %}{# or it's empty (TODO:) #}
+        {# Google Analytics #}
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ getenv("GOOGLE_ANALYTICS_UA") }}"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
@@ -22,6 +27,23 @@
           gtag('js', new Date());
 
           gtag('config', '{{ getenv("GOOGLE_ANALYTICS_UA") }}');
+        </script>
+      {% else %}
+        {# Matomo #}
+        <script>
+          var _paq = _paq || [];
+          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+          _paq.push(["setDocumentTitle", siteId + "/" + document.title]);
+          _paq.push(["setCookieDomain", "*" + suffix]);
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            var u="//analytics.theel0ja.info/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', '6']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+          })();
         </script>
       {% endif %}
     {% endif %}

@@ -52,10 +52,10 @@ app.use(lusca.csp({
   policy: {
     "default-src": "'none'",
     "manifest-src": "'self'",
-    "img-src": gAnalyticsImgSrc + " " + "'self' data:",
+    "img-src": gAnalyticsImgSrc + " " + "https://analytics.theel0ja.info 'self' data:",
     "style-src": "'unsafe-inline' https://cdnjs.cloudflare.com",
     // tslint:disable-next-line:max-line-length
-    "script-src": gAnalyticsScriptSrc + " " + "'self' " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
+    "script-src": gAnalyticsScriptSrc + " " + "https://analytics.theel0ja.info 'self' " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
     "report-uri": cspReportUri,
     "connect-src": "https://sentry.io",
     "block-all-mixed-content": "",

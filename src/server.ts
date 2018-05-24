@@ -38,10 +38,20 @@ app.use(lusca.xssProtection(true)); // TODO: Setup Report-URI for this (https://
 app.use(lusca.hsts({maxAge: 31536000, includeSubDomains: false, preload: false}));
 
 let cspReportUri: string;
+
+let cssCdn: string = "";
+let jsCdn: string = "";
+
 if (production) {
   cspReportUri = process.env.REPORT_URI;
+  
+  // cssCdn = "";
+  jsCDN = "https://kouluruoka-cdn.theel0ja.info";
 } else {
   cspReportUri = "/api/csp-report-dev";
+  
+  // cssCdn = "";
+  jsCDN = "'self'";
 }
 
 const gAnalyticsImgSrc = "https://www.google-analytics.com";
@@ -53,9 +63,9 @@ app.use(lusca.csp({
     "default-src": "'none'",
     "manifest-src": "'self'",
     "img-src": gAnalyticsImgSrc + " " + "https://analytics.theel0ja.info 'self' data:",
-    "style-src": "'unsafe-inline' https://cdnjs.cloudflare.com",
+    "style-src": cssCdn + " " + "'unsafe-inline' https://cdnjs.cloudflare.com",
     // tslint:disable-next-line:max-line-length
-    "script-src": gAnalyticsScriptSrc + " " + "https://analytics.theel0ja.info 'self' " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
+    "script-src": gAnalyticsScriptSrc + " " + jsCdn + " " + "https://analytics.theel0ja.info " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
     "report-uri": cspReportUri,
     "connect-src": "https://sentry.io",
     "block-all-mixed-content": "",

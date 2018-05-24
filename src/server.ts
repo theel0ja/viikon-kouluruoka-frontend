@@ -54,6 +54,7 @@ if (production) {
   jsCdn = "'self'";
 }
 
+/* TODO: Set these only if site uses google analytics instead of Matomo */
 const gAnalyticsImgSrc = "https://www.google-analytics.com";
 const gAnalyticsScriptSrc = "https://www.googletagmanager.com https://www.google-analytics.com";
 

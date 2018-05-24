@@ -46,12 +46,12 @@ if (production) {
   cspReportUri = process.env.REPORT_URI;
   
   // cssCdn = "";
-  jsCDN = "https://kouluruoka-cdn.theel0ja.info";
+  jsCdn = "https://kouluruoka-cdn.theel0ja.info";
 } else {
   cspReportUri = "/api/csp-report-dev";
   
   // cssCdn = "";
-  jsCDN = "'self'";
+  jsCdn = "'self'";
 }
 
 const gAnalyticsImgSrc = "https://www.google-analytics.com";

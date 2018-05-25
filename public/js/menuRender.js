@@ -169,8 +169,12 @@ function createTr() {
 }
 
 // createTd
-function createTd(innerHTML) {
+function createTd(innerHTML, id) {
   let element = document.createElement("td");
+
+  if(id !== undefined) {
+    element.id = id;
+  }
 
   element.innerHTML = innerHTML;
 
@@ -221,16 +225,19 @@ function createDayCard (data) {
   let tbody = createTbody();
 
   // Start cardBody->table->tbody->tr[]
+  let counter = 0;
   data.meals.forEach(function(meal) {
     let tr = createTr();
 
-    let thType = createTh("row", meal.type);
+    let thType = createTh("row", meal.type, "tbody-th-" + counter + "-row");
     tr.appendChild(thType);
 
-    let tdDescription = createTd(meal.description);
+    let tdDescription = createTd(meal.description, "tbody-td-" + counter + "-row");
     tr.appendChild(tdDescription);
 
     tbody.appendChild(tr);
+
+    counter++;
   });
   // End cardBody->table->tbody->tr
 

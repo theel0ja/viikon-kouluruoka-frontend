@@ -4,10 +4,16 @@
   <h1>{{ restaurant.name }}</h1>
 
   <div id="menuContainer">
-    <ul class="nav nav-tabs" id="menuTabList">
+    <ul class="nav nav-tabs">
       {# <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
       </li> #}
+      
+      {% for menu in menus %}
+        <li class="nav-item">
+          <a class="nav-link {% if loop.first %}active{% endif %}" data-toggle="tab" href="#{{ menu.id }}">{{ menu.name }}</a>
+        </li>
+      {% endfor %}
     </ul>
     <div id="tabPaneContainer" class="tab-content">
       {# <div class="tab-pane fade show active" id="home">

@@ -37,23 +37,43 @@ router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
     axios.get(process.env.API_BACKEND + "/restaurants"),
     axios.get(process.env.API_BACKEND + "/categories"),
   ])
-  .then(([restaurantsResponse, categoriesResponse]) => {
-    const restaurantsData = restaurantsResponse.data;
-    const categoriesData = categoriesResponse.data;
+    .then(([restaurantsResponse, categoriesResponse]) => {
+      // TODO: Use Interfaces from backend
+      const restaurantsData = restaurantsResponse.data;
+      const categoriesData = categoriesResponse.data;
 
-    const restaurantData = restaurantsData.find((x) => x.id === req.params.id);
-    const categoryName = categoriesData.find((x) => x.id === restaurantData.category).name;
+      const restaurantData = restaurantsData.find((x) => x.id === req.params.id);
+      const categoryName = categoriesData.find((x) => x.id === restaurantData.category).name;
 
-    res.render("restaurants/show.twig", {
-      title: restaurantData.name,
-      restaurant: restaurantData,
-      categoryName,
-      categories: categoriesData,
-      restaurantJson: JSON.stringify(restaurantData),
-      categoriesJson: JSON.stringify(categoriesData),
-    });
-  })
-  .catch(next);
+      const menuDataPromises = [];
+
+      restaurantData.menus.forEach((menu) => {
+        menuDataPromises.push(
+          axios.get(`${process.env.API_BACKEND}/menus/${menu.id}`)
+        );
+      });
+
+      Promise.all(menuDataPromises)
+        .then((responses) => {
+          const menus = [];
+
+          responses.forEach((response) => {
+            menus.push(response.data);
+          });
+
+          res.render("restaurants/show.twig", {
+            title: restaurantData.name,
+            restaurant: restaurantData,
+            categoryName,
+            categories: categoriesData,
+            menus,
+            restaurantJson: JSON.stringify(restaurantData),
+            categoriesJson: JSON.stringify(categoriesData),
+            menusJson: JSON.stringify(menus, null, 2),
+          });
+        });
+    })
+    .catch(next);
 });
 
 export const RestaurantController: Router = router;

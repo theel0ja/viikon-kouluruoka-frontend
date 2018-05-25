@@ -57,6 +57,7 @@
     {% if isProd() == "true" %}
       {# DNS Prefetch #}
       <link rel="dns-prefetch" href="{{ getStaticUrl() }}">
+      <link rel="dns-prefetch" href="{{ getenv("API_BACKEND") }}">
     {% endif %}
 
 

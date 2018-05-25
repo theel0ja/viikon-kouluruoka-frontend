@@ -117,7 +117,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       "img-src": analyticsImgSrc + " " + "'self' data:",
       "style-src": cssCdn + " " + "'unsafe-inline' https://cdnjs.cloudflare.com",
       // tslint:disable-next-line:max-line-length
-      "script-src": analyticsScriptSrc + " " + jsCdn + " " + process.env.API_BACKEND + "/menus/ https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
+      "script-src": analyticsScriptSrc + " " + jsCdn + " " + process.env.API_BACKEND + "/menus/ https://cdnjs.cloudflare.com https://cdn.theel0ja.info/libs/bsmenu-4/",
       "report-uri": cspReportUri,
       "connect-src": "https://sentry.io",
       "block-all-mixed-content": "",

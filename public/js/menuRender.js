@@ -133,7 +133,10 @@ function createTheadWithTr() {
   thead.appendChild(tr);
   // End tr
 
-  return thead;
+  return {
+    thead: thead,
+    tr: tr
+  };
 }
 
 // createTh
@@ -193,18 +196,20 @@ function createDayCard (data) {
 
   // Start cardBody->table->thead->tr
   (function() {
-    let theadTr = createTheadWithTr();
+    let element = createTheadWithTr();
+    let thead = element.thead;
+    let tr = element.tr;
   
     // Start Create some <th> elements
-    theadTr.appendChild(
+    tr.appendChild(
       createTh("col", "Type")
     );
-    theadTr.appendChild(
+    tr.appendChild(
       createTh("col", "Description")
     );
     // End Create some <th> elements
   
-    table.appendChild(theadTr);
+    table.appendChild(thead);
   })(table);
   // End cardBody->table->thead->tr
 

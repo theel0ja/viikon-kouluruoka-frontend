@@ -9,11 +9,11 @@
       {# Sentry #}
       <script src="https://cdnjs.cloudflare.com/ajax/libs/raven.js/3.25.2/raven.min.js" integrity="sha256-J7gOlA8MDnRhSTWtoQkf9MCKFZwQxNxNV28+1WyJFsA=" crossorigin="anonymous"></script>
 
-      <script>
+      <script nonce="{{ getScriptNonce() }}">
         Raven.config('https://fd3c65ae8bde436ca0b32183a6099b44@sentry.io/1209758').install();
       </script>
       {# Settings #}
-      <script>
+      <script nonce="{{ getScriptNonce() }}">
         const suffix = ".kouluruoka.eliasojala.me";
         const siteId = document.domain.replace(suffix, "");
       </script>
@@ -21,7 +21,7 @@
       {% if useGAnalytics() == "true" %}
         {# Google Analytics #}
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ getenv("GOOGLE_ANALYTICS_UA") }}"></script>
-        <script>
+        <script nonce="{{ getScriptNonce() }}">
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
@@ -30,7 +30,7 @@
         </script>
       {% else %}
         {# Matomo #}
-        <script>
+        <script nonce="{{ getScriptNonce() }}">
           var _paq = _paq || [];
           /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
           _paq.push(["setDocumentTitle", siteId + ": " + document.title]);
@@ -113,7 +113,7 @@
     {% block stylesheets %}{% endblock %}
 
     {# Settings #}
-    <script>
+    <script nonce="{{ getScriptNonce() }}">
       const API_BACKEND = "{{ getenv("API_BACKEND") }}";
       const APP_NAME = "{{ getenv("APP_NAME") }}";
     </script>

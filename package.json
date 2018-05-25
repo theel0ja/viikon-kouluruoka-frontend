@@ -22,6 +22,7 @@
     "heroku-ssl-redirect": "^0.0.4",
     "lusca": "^1.6.0",
     "raven": "^2.6.2",
+    "slugid": "^2.0.0",
     "twig": "^1.11.0",
     "typescript": "^2.8.3"
   },

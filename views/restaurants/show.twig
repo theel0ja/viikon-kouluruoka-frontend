@@ -50,7 +50,7 @@
 {% endblock %}
 
 {% block javascripts %}
-  {# <script>
+  {# <script nonce="{{ getScriptNonce() }}">
     const restaurantData = {{ restaurantJson }};
     const categoriesData = {{ categoriesJson }};
   </script> #}

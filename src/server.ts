@@ -6,7 +6,9 @@ import minify from "express-minify";
 import sslRedirect from "heroku-ssl-redirect";
 import lusca from "lusca";
 import Raven from "raven";
+import slugid from "slugid";
 import twig from "twig";
+import uuid from "uuid";
 
 dotenv.config();
 
@@ -99,21 +101,37 @@ twig.extendFunction("useGAnalytics", () => {
 /**
  * Content Security Policy
  */
-app.use(lusca.csp({
-  /* tslint:disable:object-literal-sort-keys */
-  policy: {
-    "default-src": "'none'",
-    "manifest-src": "'self'",
-    "img-src": analyticsImgSrc + " " + "'self' data:",
-    "style-src": cssCdn + " " + "'unsafe-inline' https://cdnjs.cloudflare.com",
-    // tslint:disable-next-line:max-line-length
-    "script-src": analyticsScriptSrc + " " + jsCdn + " " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
-    "report-uri": cspReportUri,
-    "connect-src": "https://sentry.io",
-    "block-all-mixed-content": "",
-  },
-  /* tslint:enable:object-literal-sort-keys */
-}));
+
+const nonce = slugid.v4();
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.locals.nonce = nonce;
+
+  lusca.csp({
+    /* tslint:disable:object-literal-sort-keys */
+    policy: {
+      "default-src": "'none'",
+      "manifest-src": "'self'",
+      "img-src": analyticsImgSrc + " " + "'self' data:",
+      "style-src": cssCdn + " " + "'unsafe-inline' https://cdnjs.cloudflare.com",
+      // tslint:disable-next-line:max-line-length
+      "script-src": analyticsScriptSrc + " " + jsCdn + " " + process.env.API_BACKEND + "/menus/ https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
+      "report-uri": cspReportUri,
+      "connect-src": "https://sentry.io",
+      "block-all-mixed-content": "",
+    },
+    scriptNonce: true,
+    /* tslint:enable:object-literal-sort-keys */
+  })(req, res, next);
+});
+
+twig.extendFunction("getScriptNonce", () => {
+  return nonce;
+});
+
+/**
+ * Other Lusca headers
+ */
 
 app.use(lusca.xframe("DENY"));
 app.use(lusca.referrerPolicy("no-referrer-when-downgrade"));

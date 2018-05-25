@@ -18,7 +18,7 @@
           <li>Nothing in this category.</li>
         </noscript>
         
-        <script>
+        <script nonce="{{ getScriptNonce() }}">
           document.getElementById("h3-category-{{ category.id }}").outerHTML = "";
           document.getElementById("ul-category-{{ category.id }}").outerHTML = "";
         </script>
@@ -28,7 +28,7 @@
 {% endblock %}
 
 {% block javascripts %}
-  {# <script>
+  {# <script nonce="{{ getScriptNonce() }}">
     const restaurantsData = {{ restaurantsJson }};
     const categoriesData = {{ categoriesJson }};
   </script> #}

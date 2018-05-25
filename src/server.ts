@@ -119,8 +119,9 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       "manifest-src": "'self'",
       "img-src": analyticsImgSrc + " " + "'self' data:",
       "style-src": cssCdn + " " + "'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/",
+      // script-src has 'unsafe-inline' just for backwards compability, it's ignored in browsers supporting nonces.
       // tslint:disable-next-line:max-line-length
-      "script-src": `${analyticsScriptSrc} ${jsLibs} ${jsCdn} ${process.env.API_BACKEND}/menus/ https://cdn.theel0ja.info/libs/bsmenu-4/`,
+      "script-src": `'unsafe-inline' ${analyticsScriptSrc} ${jsLibs} ${jsCdn} ${process.env.API_BACKEND}/menus/ https://cdn.theel0ja.info/libs/bsmenu-4/`,
       "report-uri": cspReportUri,
       "connect-src": "https://sentry.io",
       "block-all-mixed-content": "",

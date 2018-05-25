@@ -140,8 +140,12 @@ function createTheadWithTr() {
 }
 
 // createTh
-function createTh(scope, innerHTML) {
+function createTh(scope, innerHTML, id) {
   let element = document.createElement("th");
+
+  if(id !== undefined) {
+    element.id = id;
+  }
 
   element.scope = scope;
 
@@ -202,10 +206,10 @@ function createDayCard (data) {
   
     // Start Create some <th> elements
     tr.appendChild(
-      createTh("col", "Type")
+      createTh("col", "Type", "thead-th-type")
     );
     tr.appendChild(
-      createTh("col", "Description")
+      createTh("col", "Description", "thead-th-description")
     );
     // End Create some <th> elements
   

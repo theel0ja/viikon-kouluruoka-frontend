@@ -121,6 +121,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       "report-uri": cspReportUri,
       "connect-src": "https://sentry.io",
       "block-all-mixed-content": "",
+      "base-uri": "'none'",
     },
     scriptNonce: true,
     /* tslint:enable:object-literal-sort-keys */

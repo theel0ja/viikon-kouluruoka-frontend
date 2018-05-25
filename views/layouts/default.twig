@@ -54,6 +54,11 @@
     {# Privacy #}
     <meta name="twitter:dnt" content="on">
 
+    {% if isProd() == "true" %}
+      {# DNS Prefetch #}
+      <link rel="dns-prefetch" href="{{ getStaticUrl() }}">
+    {% endif %}
+
 
     {# SEO #}
     {% if title %}

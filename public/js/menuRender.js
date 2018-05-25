@@ -11,57 +11,6 @@
 let counter = 0;
 
 
-// navItemCreator (i)
-function createNavItem () {
-  let element = document.createElement("li");
-  element.classList.add("nav-item");
-
-  return element;
-}
-
-function createNavLink (tabName, active) {
-  let element = document.createElement("a");
-  element.classList.add("nav-link");
-
-  element.dataset.toggle = "tab";
-  element.href = "#" + tabName;
-
-  if( active === true ) {
-    element.classList.add("active");
-  }
-
-  return element;
-}
-
-function navItemCreator (id, text, active) {
-  let navItem = createNavItem();
-  let navItemLink = createNavLink(id, active);
-
-  navItemLink.text = text;
-
-  // Append navItemLink to navItem
-  navItem.appendChild(navItemLink);
-
-  // Return navItem
-  return navItem;
-}
-
-// menuRenderNavItems (p)
-function menuRenderNavItems (data, active) {
-  let navItemText;
-
-  if(data.name) {
-    navItemText = data.name;
-  } else {
-    navItemText = data.id; // FIXME: Use something else!
-  }
-
-  const navItem = navItemCreator(data.id, navItemText, active);
-
-  return navItem;
-}
-
-
 // createTabPane (p)
 function createTabPane (id, active) {
   let element = document.createElement("div");
@@ -261,7 +210,6 @@ function createDayCard (data) {
  */
 function menuRender (data) { // eslint-disable-line no-unused-vars
   // Elements
-  // const menuTabList = document.getElementById("menuTabList");
   const tabPaneContainer = document.getElementById("tabPaneContainer");
 
   let active;
@@ -272,10 +220,6 @@ function menuRender (data) { // eslint-disable-line no-unused-vars
   } else {
     active = false;
   }
-
-  // Nav items
-  const navItem = menuRenderNavItems(data, active);
-  // menuTabList.appendChild(navItem);
 
   // Tab panes
   let tabPane = createTabPane(data.id, active);

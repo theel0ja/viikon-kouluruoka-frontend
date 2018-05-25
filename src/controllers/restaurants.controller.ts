@@ -49,7 +49,7 @@ router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
 
       restaurantData.menus.forEach((menu) => {
         menuDataPromises.push(
-          axios.get(`${process.env.API_BACKEND}/menus/${menu.id}`)
+          axios.get(`${process.env.API_BACKEND}/menus/${menu.id}`),
         );
       });
 

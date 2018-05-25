@@ -37,10 +37,9 @@ app.use(lusca.xssProtection(true)); // TODO: Setup Report-URI for this (https://
 
 app.use(lusca.hsts({maxAge: 31536000, includeSubDomains: false, preload: false}));
 
-let cspReportUri: string;
-
 let staticUrl: string = ""; // CDN url, such as ""
 
+let cspReportUri: string;
 let cssCdn: string = "";
 let jsCdn: string = "";
 
@@ -64,19 +63,51 @@ twig.extendFunction("getStaticUrl", () => {
   return staticUrl;
 });
 
-/* TODO: Set these only if site uses google analytics instead of Matomo */
-const gAnalyticsImgSrc = "https://www.google-analytics.com";
-const gAnalyticsScriptSrc = "https://www.googletagmanager.com https://www.google-analytics.com";
+/**
+ * useGAnalytics
+ */
 
+let analyticsImgSrc: string = "";
+let analyticsScriptSrc: string = "";
+
+let useGAnalytics: boolean = true;
+
+if (!production) {
+  useGAnalytics = false;
+} else if (production) {
+  const GOOGLE_ANALYTICS_UA = process.env.GOOGLE_ANALYTICS_UA;
+
+  if (GOOGLE_ANALYTICS_UA === "UA-XXXXXXXXX-X") {
+    useGAnalytics = false;
+  } else if (!GOOGLE_ANALYTICS_UA) {
+    useGAnalytics = false;
+  }
+}
+
+if (useGAnalytics) {
+  analyticsImgSrc = "https://www.google-analytics.com";
+  analyticsScriptSrc = "https://www.googletagmanager.com https://www.google-analytics.com";
+} else if (!useGAnalytics && production) {
+  analyticsImgSrc = "https://analytics.theel0ja.info";
+  analyticsScriptSrc = "https://analytics.theel0ja.info";
+}
+
+twig.extendFunction("useGAnalytics", () => {
+  return useGAnalytics.toString();
+});
+
+/**
+ * Content Security Policy
+ */
 app.use(lusca.csp({
   /* tslint:disable:object-literal-sort-keys */
   policy: {
     "default-src": "'none'",
     "manifest-src": "'self'",
-    "img-src": gAnalyticsImgSrc + " " + "https://analytics.theel0ja.info 'self' data:",
+    "img-src": analyticsImgSrc + " " + " 'self' data:",
     "style-src": cssCdn + " " + "'unsafe-inline' https://cdnjs.cloudflare.com",
     // tslint:disable-next-line:max-line-length
-    "script-src": gAnalyticsScriptSrc + " " + jsCdn + " " + "https://analytics.theel0ja.info " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
+    "script-src": analyticsScriptSrc + " " + jsCdn + " " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",
     "report-uri": cspReportUri,
     "connect-src": "https://sentry.io",
     "block-all-mixed-content": "",

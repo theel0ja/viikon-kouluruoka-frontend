@@ -9,7 +9,6 @@ import Raven from "raven";
 import slugid from "slugid";
 import twig from "twig";
 import uglifyEs from "uglify-es";
-import uuid from "uuid";
 
 dotenv.config();
 

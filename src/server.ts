@@ -39,20 +39,30 @@ app.use(lusca.hsts({maxAge: 31536000, includeSubDomains: false, preload: false})
 
 let cspReportUri: string;
 
+let staticUrl: string = ""; // CDN url, such as ""
+
 let cssCdn: string = "";
 let jsCdn: string = "";
 
 if (production) {
   cspReportUri = process.env.REPORT_URI;
-  
-  // cssCdn = "";
-  jsCdn = "https://kouluruoka-cdn.theel0ja.info";
+
+  staticUrl = "https://kouluruoka-cdn.theel0ja.info";
+
+  cssCdn = "";
+  jsCdn = staticUrl;
 } else {
   cspReportUri = "/api/csp-report-dev";
-  
-  // cssCdn = "";
+
+  staticUrl = ""; // 'self'
+
+  cssCdn = "";
   jsCdn = "'self'";
 }
+
+twig.extendFunction("getStaticUrl", () => {
+  return staticUrl;
+});
 
 /* TODO: Set these only if site uses google analytics instead of Matomo */
 const gAnalyticsImgSrc = "https://www.google-analytics.com";

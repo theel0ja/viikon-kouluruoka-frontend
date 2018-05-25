@@ -109,6 +109,9 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     return res.locals.nonce;
   });
 
+  // tslint:disable-next-line:max-line-length
+  const jsLibs = "https://cdnjs.cloudflare.com/ajax/libs/jquery/ https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/ https://cdnjs.cloudflare.com/ajax/libs/raven.js/";
+
   lusca.csp({
     /* tslint:disable:object-literal-sort-keys */
     policy: {
@@ -117,7 +120,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       "img-src": analyticsImgSrc + " " + "'self' data:",
       "style-src": cssCdn + " " + "'unsafe-inline' https://cdnjs.cloudflare.com",
       // tslint:disable-next-line:max-line-length
-      "script-src": analyticsScriptSrc + " " + jsCdn + " " + process.env.API_BACKEND + "/menus/ https://cdnjs.cloudflare.com https://cdn.theel0ja.info/libs/bsmenu-4/",
+      "script-src": `${analyticsScriptSrc} ${jsLibs} ${jsCdn} ${process.env.API_BACKEND}/menus/ https://cdn.theel0ja.info/libs/bsmenu-4/`,
       "report-uri": cspReportUri,
       "connect-src": "https://sentry.io",
       "block-all-mixed-content": "",

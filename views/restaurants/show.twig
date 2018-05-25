@@ -10,6 +10,7 @@
       </li> #}
       {% for menu in menus %}
         <li class="nav-item">
+          {# TODO: menu.selectedTab == "true" #}
           <a class="nav-link {% if loop.first %}active show{% endif %}" data-toggle="tab" href="#{{ menu.id }}">{{ menu.name }}</a>
         </li>
       {% endfor %}

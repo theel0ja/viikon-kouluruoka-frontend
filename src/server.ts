@@ -104,7 +104,7 @@ app.use(lusca.csp({
   policy: {
     "default-src": "'none'",
     "manifest-src": "'self'",
-    "img-src": analyticsImgSrc + " " + " 'self' data:",
+    "img-src": analyticsImgSrc + " " + "'self' data:",
     "style-src": cssCdn + " " + "'unsafe-inline' https://cdnjs.cloudflare.com",
     // tslint:disable-next-line:max-line-length
     "script-src": analyticsScriptSrc + " " + jsCdn + " " + process.env.API_BACKEND + "/menus/ 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.theel0ja.info",

@@ -8,6 +8,7 @@ import lusca from "lusca";
 import Raven from "raven";
 import slugid from "slugid";
 import twig from "twig";
+import uglifyEs from "uglify-es";
 import uuid from "uuid";
 
 dotenv.config();
@@ -140,7 +141,9 @@ app.use(lusca.xframe("DENY"));
 app.use(lusca.referrerPolicy("no-referrer-when-downgrade"));
 
 app.use(compression());
-app.use(minify());
+app.use(minify({
+  uglifyJsModule: uglifyEs,
+}));
 app.use(express.static("public"));
 
 // Mount the RestaurantController at the /restaurants route

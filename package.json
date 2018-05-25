@@ -24,7 +24,8 @@
     "raven": "^2.6.2",
     "slugid": "^2.0.0",
     "twig": "^1.11.0",
-    "typescript": "^2.8.3"
+    "typescript": "^2.8.3",
+    "uglify-es": "^3.3.9"
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.3",

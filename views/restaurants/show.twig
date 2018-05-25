@@ -42,7 +42,7 @@
   {# FIXME: Do not hardcode the url #}
   <a href="https://ruokalistatkoulutjapaivakodit.arkea.fi/#/{{ restaurant.id }}">Show original</a>
 
-  <script src="{{ getStaticUrl() }}/js/menuRender.js"></script>
+  <script src="{{ getStaticUrl() }}/js/menuRender.js?v={{ getAssetVersion() }}"></script>
 
   {% for menu in restaurant.menus %}
     <script src="{{ getenv("API_BACKEND") }}/menus/{{ menu.id }}?callback=menuRender"></script>

@@ -20,25 +20,40 @@ twig.extendFunction("getenv", (name: string) => {
   return process.env[name];
 });
 
+/**
+ * Is server in production mode?
+ */
 const production = process.env.NODE_ENV === "production";
-
-if (production) {
-  Raven.config("https://fd3c65ae8bde436ca0b32183a6099b44@sentry.io/1209758").install();
-}
 
 twig.extendFunction("isProd", () => {
   return production.toString();
 });
 
-// Create a new express application instance
+/**
+ * Enable Raven (Sentry) if production
+ */
+if (production) {
+  Raven.config("https://fd3c65ae8bde436ca0b32183a6099b44@sentry.io/1209758").install();
+}
+
+/**
+ * Create a new express application instance
+ */
 const app: express.Application = express();
 app.disable("x-powered-by");
 app.use(sslRedirect(["production"], 301)); // Heroku
+
+/**
+ * Basic security headers
+ */
 app.use(lusca.nosniff());
 app.use(lusca.xssProtection(true)); // TODO: Setup Report-URI for this (https://github.com/krakenjs/lusca/issues/124)
 
 app.use(lusca.hsts({maxAge: 31536000, includeSubDomains: false, preload: false}));
 
+/**
+ * Static URLs, etc.
+ */
 let staticUrl: string = ""; // CDN url, such as ""
 
 let cspReportUri: string;
@@ -63,6 +78,14 @@ if (production) {
 
 twig.extendFunction("getStaticUrl", () => {
   return staticUrl;
+});
+
+/**
+ * getAssetVersion
+ */
+
+twig.extendFunction("getAssetVersion", () => {
+  return (1).toString();
 });
 
 /**
@@ -133,17 +156,24 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 /**
- * Other Lusca headers
+ * Other security headers
  */
 
 app.use(lusca.xframe("DENY"));
 app.use(lusca.referrerPolicy("no-referrer-when-downgrade"));
 
+/**
+ * Static assets
+ */
 app.use(compression());
 app.use(minify({
   uglifyJsModule: uglifyEs,
 }));
 app.use(express.static("public"));
+
+/**
+ * Controllers and routes
+ */
 
 // Mount the RestaurantController at the /restaurants route
 app.use("/", HomeController);
@@ -152,6 +182,10 @@ app.use("/restaurants/", RestaurantController);
 app.get("/api/sites", (req: Request, res: Response, next: NextFunction) => {
   res.jsonp(viikonKouluruokaSites);
 });
+
+/**
+ * Run the server
+ */
 
 // The port the express app will listen on
 const port: (string | number) = process.env.PORT || 3000;

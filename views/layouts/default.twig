@@ -13,7 +13,7 @@
         Raven.config('https://fd3c65ae8bde436ca0b32183a6099b44@sentry.io/1209758').install();
       </script>
 
-      
+
       {# Settings #}
       <script nonce="{{ getScriptNonce() }}">
         const suffix = ".kouluruoka.eliasojala.me";
@@ -162,7 +162,7 @@
     {# <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> #}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha256-5+02zu5UULQkO7w1GIr6vftCgMfFdZcAHeDtFnKZsBs=" crossorigin="anonymous"></script>
     
-    <script src="https://cdn.theel0ja.info/libs/bsmenu-4/bsmenu.js"></script>
+    <script src="https://cdn.theel0ja.info/libs/bsmenu-4/bsmenu.js?v={{ getAssetVersion() }}"></script>
 
     {# Other JavaScript #}
     {% block javascripts %}{% endblock %}

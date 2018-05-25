@@ -69,7 +69,7 @@ router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
             menus,
             restaurantJson: JSON.stringify(restaurantData),
             categoriesJson: JSON.stringify(categoriesData),
-            menusJson: JSON.stringify(menus, null, 2),
+            menusJson: JSON.stringify(menus),
           });
         });
     })

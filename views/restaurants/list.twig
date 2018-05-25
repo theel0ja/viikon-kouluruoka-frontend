@@ -13,7 +13,7 @@
       {% for restaurant in restaurants if restaurant.category == category.id %}
         <li><a href="/restaurants/{{ restaurant.id }}">{{ restaurant.name }}</a></li>
       {% else %}
-        {# TODO: Make better solution! #}
+        {# TODO: Make a better solution! #}
         <noscript>
           <li>Nothing in this category.</li>
         </noscript>

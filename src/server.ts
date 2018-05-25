@@ -102,10 +102,12 @@ twig.extendFunction("useGAnalytics", () => {
  * Content Security Policy
  */
 
-const nonce = slugid.v4();
-
 app.use((req: Request, res: Response, next: NextFunction) => {
-  res.locals.nonce = nonce;
+  res.locals.nonce = slugid.v4();
+
+  twig.extendFunction("getScriptNonce", () => {
+    return res.locals.nonce;
+  });
 
   lusca.csp({
     /* tslint:disable:object-literal-sort-keys */
@@ -123,10 +125,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     scriptNonce: true,
     /* tslint:enable:object-literal-sort-keys */
   })(req, res, next);
-});
-
-twig.extendFunction("getScriptNonce", () => {
-  return nonce;
 });
 
 /**

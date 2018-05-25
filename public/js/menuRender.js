@@ -261,7 +261,7 @@ function createDayCard (data) {
  */
 function menuRender (data) { // eslint-disable-line no-unused-vars
   // Elements
-  const menuTabList = document.getElementById("menuTabList");
+  // const menuTabList = document.getElementById("menuTabList");
   const tabPaneContainer = document.getElementById("tabPaneContainer");
 
   let active;
@@ -275,7 +275,7 @@ function menuRender (data) { // eslint-disable-line no-unused-vars
 
   // Nav items
   const navItem = menuRenderNavItems(data, active);
-  menuTabList.appendChild(navItem);
+  // menuTabList.appendChild(navItem);
 
   // Tab panes
   let tabPane = createTabPane(data.id, active);

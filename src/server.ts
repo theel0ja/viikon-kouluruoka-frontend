@@ -1,8 +1,4 @@
-import compression from "compression";
 import app from "./app";
-
-// Enable compression
-app.use(compression());
 
 // Disable X-Powered-By
 app.disable("x-powered-by");

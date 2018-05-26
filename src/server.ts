@@ -1,5 +1,3 @@
-// import errorHandler from "errorhandler";
-
 import app from "./app";
 
 // Disable X-Powered-By

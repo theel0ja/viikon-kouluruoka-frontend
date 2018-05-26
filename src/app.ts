@@ -1,5 +1,4 @@
 // Import everything from express and assign it to the express variable
-import compression from "compression";
 import dotenv from "dotenv";
 import express, { NextFunction, Request, Response } from "express";
 import minify from "express-minify";

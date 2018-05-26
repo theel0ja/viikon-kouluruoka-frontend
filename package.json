@@ -28,6 +28,7 @@
     "uglify-es": "^3.3.9"
   },
   "devDependencies": {
+    "@types/compression": "^0.0.36",
     "@types/dotenv": "^4.0.3",
     "@types/express": "^4.11.1",
     "@types/lusca": "^1.5.0",

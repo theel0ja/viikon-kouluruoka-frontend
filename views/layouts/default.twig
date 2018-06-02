@@ -113,6 +113,9 @@
     {# Other CSS #}
     {% block stylesheets %}{% endblock %}
 
+    {# Header JS #}
+    <script src="{{ getStaticUrl() }}/js/app.js?v={{ getAssetVersion() }}"></script>
+
     {# Settings #}
     {# <script nonce="{{ getScriptNonce() }}">
       const API_BACKEND = "{{ getenv("API_BACKEND") }}";

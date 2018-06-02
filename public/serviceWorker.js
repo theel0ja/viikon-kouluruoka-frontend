@@ -1,0 +1,1 @@
+// Viikon kouluruoka service worker

@@ -11,7 +11,9 @@
       {% for menu in menus %}
         <li class="nav-item">
           {# TODO: menu.selectedTab == "true" #}
-          <a class="nav-link {% if loop.first %}active show{% endif %}" data-toggle="tab" href="#{{ menu.id }}">{{ menu.name }}</a>
+          <a data-toggle="tab"
+          class="nav-link {% if loop.first %}active show{% endif %}"
+          href="#{{ menu.id }}">{{ menu.name }}</a>
         </li>
       {% endfor %}
     </ul>
@@ -19,6 +21,41 @@
       {# <div class="tab-pane fade show active" id="home">
         <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
       </div> #}
+      {% for menu in menus %}
+        <li class="tab-pane fade {% if loop.first %}active show{% endif %}" id="{{ menu.id }}">
+          {% for day in menu.days %}
+            <div class="card">
+              <p class="card-header">{{ day.dateAsText }}</p>
+              <div class="card-body" style="padding: 0px;">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="type">
+                        Type
+                      </th>
+                      <th scope="col" class="description">
+                        Description
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for meal in day.meals %}
+                      <tr>
+                        <th scope="row" class="meal-type">
+                          {{ meal.type }}
+                        </th>
+                        <td>
+                          {{ meal.description }}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          {% endfor %}
+        </li>
+      {% endfor %}
     </div>
   </div>
 
@@ -45,14 +82,15 @@
       </ul>
     </li>
   </ul> #}
+  
   {# FIXME: Do not hardcode the url #}
   <a href="https://ruokalistatkoulutjapaivakodit.arkea.fi/#/{{ restaurant.id }}">Show original</a>
 
-  <script src="{{ getStaticUrl() }}/js/menuRender.js?v={{ getAssetVersion() }}"></script>
+  {# <script src="{{ getStaticUrl() }}/js/menuRender.js?v={{ getAssetVersion() }}"></script>
 
   {% for menu in restaurant.menus %}
     <script src="{{ getenv("API_BACKEND") }}/menus/{{ menu.id }}?callback=menuRender"></script>
-  {% endfor %}
+  {% endfor %} #}
 {% endblock %}
 
 {% block javascripts %}

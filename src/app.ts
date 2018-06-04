@@ -1,8 +1,13 @@
 // Import everything from express and assign it to the express variable
 import compression from "compression";
 import dotenv from "dotenv";
-import express, { NextFunction, Request, Response } from "express";
+import express, {
+  NextFunction,
+  Request,
+  Response
+} from "express";
 import minify from "express-minify";
+import minifyHTML from "express-minify-html";
 import sslRedirect from "heroku-ssl-redirect";
 import lusca from "lusca";
 import Raven from "raven";
@@ -13,7 +18,10 @@ import uglifyEs from "uglify-es";
 dotenv.config();
 
 // Import RestaurantController from controllers entry point
-import { HomeController, RestaurantController } from "./controllers";
+import {
+  HomeController,
+  RestaurantController
+} from "./controllers";
 import viikonKouluruokaSites from "./viikonKouluruokaSites";
 
 twig.extendFunction("getenv", (name: string) => {
@@ -48,7 +56,11 @@ app.use(sslRedirect(["production"], 301)); // Heroku
 app.use(lusca.nosniff());
 app.use(lusca.xssProtection(true)); // TODO: Setup Report-URI for this (https://github.com/krakenjs/lusca/issues/124)
 
-app.use(lusca.hsts({maxAge: 31536000, includeSubDomains: false, preload: false}));
+app.use(lusca.hsts({
+  maxAge: 31536000,
+  includeSubDomains: false,
+  preload: false
+}));
 
 /**
  * Static URLs, etc.
@@ -169,6 +181,21 @@ app.use(minify({
   uglifyJsModule: uglifyEs,
 }));
 app.use(express.static("public"));
+
+if (production) {
+  app.use(minifyHTML({
+    override: true,
+    exception_url: false,
+    htmlMinifier: {
+      removeComments: true,
+      collapseWhitespace: true,
+      collapseBooleanAttributes: true,
+      removeAttributeQuotes: true,
+      removeEmptyAttributes: true,
+      minifyJS: true,
+    },
+  }));
+}
 
 /**
  * Controllers and routes

@@ -151,6 +151,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     policy: {
       "default-src": "'none'",
       "manifest-src": "'self'",
+      "worker-src": "'self'",
       "img-src": analyticsImgSrc + " " + "'self' data:",
       "style-src": cssCdn + " " + "'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/",
       // script-src has 'unsafe-inline' just for backwards compability, it's ignored in browsers supporting nonces.

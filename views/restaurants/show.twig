@@ -48,13 +48,21 @@
                           {{ meal.description }}
                         </td>
                       </tr>
+                    {% else %}
+                      {# TODO: Make better one #}
+                      <p>No meals available.</p>
                     {% endfor %}
                   </tbody>
                 </table>
               </div>
             </div>
+          {% else %}
+            {# TODO: Make better one #}
+            <p>No days available.</p>
           {% endfor %}
         </li>
+      {% else %}
+        <p>No menus available.</p>
       {% endfor %}
     </div>
   </div>

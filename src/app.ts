@@ -191,7 +191,7 @@ if (production) {
       removeComments: true,
       collapseWhitespace: true,
       collapseBooleanAttributes: true,
-      removeAttributeQuotes: true,
+      removeAttributeQuotes: false, // Do not change!
       removeEmptyAttributes: true,
       minifyJS: true,
     },

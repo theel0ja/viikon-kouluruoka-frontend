@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import express, {
   NextFunction,
   Request,
-  Response
+  Response,
 } from "express";
 import minify from "express-minify";
 import minifyHTML from "express-minify-html";
@@ -20,7 +20,7 @@ dotenv.config();
 // Import RestaurantController from controllers entry point
 import {
   HomeController,
-  RestaurantController
+  RestaurantController,
 } from "./controllers";
 import viikonKouluruokaSites from "./viikonKouluruokaSites";
 
@@ -59,7 +59,7 @@ app.use(lusca.xssProtection(true)); // TODO: Setup Report-URI for this (https://
 app.use(lusca.hsts({
   maxAge: 31536000,
   includeSubDomains: false,
-  preload: false
+  preload: false,
 }));
 
 /**

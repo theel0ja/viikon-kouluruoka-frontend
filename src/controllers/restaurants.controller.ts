@@ -1,6 +1,6 @@
 import axios from "axios";
 import { NextFunction, Request, Response, Router } from "express";
-import { sendXFrameOptions } from "../sendXFrameOptions";
+import { sendXFrameOptions } from "../components/sendXFrameOptions";
 
 const router: Router = Router();
 

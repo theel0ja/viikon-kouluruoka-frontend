@@ -136,6 +136,8 @@ twig.extendFunction("useGAnalytics", () => {
  * Content Security Policy
  */
 
+const serviceWorkerConnectSrc = "";
+
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.locals.nonce = slugid.v4();
 
@@ -158,7 +160,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       // tslint:disable-next-line:max-line-length
       "script-src": `'unsafe-inline' ${analyticsScriptSrc} ${jsLibs} ${jsCdn} ${process.env.API_BACKEND}/menus/ https://cdn.theel0ja.info/libs/bsmenu-4/`,
       "report-uri": cspReportUri,
-      "connect-src": "https://sentry.io",
+      "connect-src": `${serviceWorkerConnectSrc} https://sentry.io`,
       "block-all-mixed-content": "",
       "base-uri": "'none'",
     },

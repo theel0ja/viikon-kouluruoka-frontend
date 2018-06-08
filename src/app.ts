@@ -172,8 +172,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 /**
  * Other security headers
  */
-
-app.use(lusca.xframe("DENY"));
 app.use(lusca.referrerPolicy("no-referrer-when-downgrade"));
 
 /**

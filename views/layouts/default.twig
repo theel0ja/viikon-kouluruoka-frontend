@@ -93,13 +93,15 @@
     {% endif %}
 
     {# Canonical URL #}
-    {# <link rel="canonical" href="canonicalUrl" />
-    <meta property="og:url" content="canonicalUrl" /> #}
+    <!--
+    <link rel="canonical" href="{{ getCanonicalUrl() }}" />
+    <meta property="og:url" content="{{ getCanonicalUrl() }}" />
+    -->
 
     {# oEmbed #}
-    {# <link rel="alternate" type="application/json+oembed"
-      href="/api/oembed/?url=canonicalUrl"
-      title="{{ title|e }}" /> #}
+    <link rel="alternate" type="application/json+oembed"
+      href="/api/oembed/?url={{ getCanonicalUrl() }}"
+      title="{{ title|e }}" />
 
 
 

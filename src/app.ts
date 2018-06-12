@@ -226,6 +226,17 @@ app.use("/", HomeController);
 app.use("/restaurants/", RestaurantController);
 
 app.get("/api/oembed", (req: Request, res: Response, next: NextFunction) => {
+  let sourceUrl = req.query.url;
+  sourceUrl = sourceUrl.split("#")[0];
+  sourceUrl = sourceUrl.split("?")[0];
+  // Remove last forward slash
+  sourceUrl = sourceUrl.replace(/\/+$/, ""); // https://stackoverflow.com/a/6680825#comment11853012_6680877
+
+  const cleanedUrl = sourceUrl + "/embed";
+
+  const width = 640;
+  const height = 480;
+
   res.json({
     success: true,
     type: "rich",
@@ -233,9 +244,13 @@ app.get("/api/oembed", (req: Request, res: Response, next: NextFunction) => {
     provider_name: process.env.APP_NAME,
     provider_url: process.env.ROOT_URL,
     // title: "TODO: Get title",
-    height: "640",
-    width: "480",
-    html: "<div>Foo</div>",
+    height,
+    width,
+    html:
+    `<div class="kouluruoka-menu" data-src="${cleanedUrl}"\
+      width="${width}" height="${width}">\
+      <iframe frameborder="0" src="${cleanedUrl}"></iframe>\
+    </div>`.replace(/  /g, ""), // remove whitespace
   });
 });
 

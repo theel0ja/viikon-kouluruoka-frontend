@@ -252,7 +252,7 @@ app.get("/api/oembed", (req: Request, res: Response, next: NextFunction) => {
     width,
     html:
     `<div class="kouluruoka-menu" data-src="${cleanedUrl}"\
-      width="${width}" height="${width}">\
+      width="${width}" height="${height}">\
       <iframe frameborder="0" src="${cleanedUrl}"></iframe>\
     </div>`.replace(/  /g, ""), // remove whitespace
   });

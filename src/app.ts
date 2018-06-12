@@ -234,6 +234,8 @@ app.get("/api/oembed", (req: Request, res: Response, next: NextFunction) => {
     return;
   }
 
+  // TODO: Enable oEmbed only on "Show restaurant" route
+
   let sourceUrl = queryUrl;
   sourceUrl = sourceUrl.split("#")[0];
   sourceUrl = sourceUrl.split("?")[0];

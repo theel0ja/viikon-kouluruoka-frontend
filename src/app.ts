@@ -38,6 +38,12 @@ twig.extendFunction("isProd", () => {
 });
 
 /**
+ * Root url
+ */
+const port: (string | number) = process.env.PORT || 3000; // Same as server.ts
+const ROOT_URL = production ? process.env.CANONICAL_ROOT : `http://localhost:${port}`;
+
+/**
  * Enable Raven (Sentry) if production
  */
 if (production) {

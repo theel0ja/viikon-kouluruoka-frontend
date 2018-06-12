@@ -228,7 +228,9 @@ app.use("/restaurants/", RestaurantController);
 app.get("/api/oembed", (req: Request, res: Response, next: NextFunction) => {
   const queryUrl = req.query.url;
 
-  // FIXME: If queryUrl is undefined, empty, etc., go to 404
+  if (!queryUrl) {
+    next();
+  }
 
   let sourceUrl = queryUrl;
   sourceUrl = sourceUrl.split("#")[0];

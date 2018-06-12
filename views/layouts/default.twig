@@ -99,9 +99,11 @@
     -->
 
     {# oEmbed #}
-    <link rel="alternate" type="application/json+oembed"
-      href="/api/oembed/?url={{ getCanonicalUrl() }}"
-      title="{{ title|e }}" />
+    {% if enable_oembed == true %}
+      <link rel="alternate" type="application/json+oembed"
+        href="/api/oembed/?url={{ getCanonicalUrl() }}"
+        title="{{ title|e }}" />
+    {% endif %}
 
 
 

@@ -71,6 +71,8 @@ router.get("/:id", sendXFrameOptions, (req: Request, res: Response, next: NextFu
             restaurantJson: JSON.stringify(restaurantData),
             categoriesJson: JSON.stringify(categoriesData),
             menusJson: JSON.stringify(menus, null, 2),
+
+            enable_oembed: true,
           });
         });
     })

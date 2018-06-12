@@ -38,6 +38,11 @@ twig.extendFunction("isProd", () => {
 });
 
 /**
+ * Root url
+ */
+const ROOT_URL = production ? process.env.CANONICAL_ROOT : `http://localhost:${port}`;
+
+/**
  * Enable Raven (Sentry) if production
  */
 if (production) {
@@ -212,7 +217,7 @@ app.get("/api/oembed", (req: Request, res: Response, next: NextFunction) => {
     type: "rich",
     version: "1.0",
     provider_name: process.env.APP_NAME,
-    provider_url: process.env.CANONICAL_ROOT,
+    provider_url: ROOT_URL,
     // title: "get title",
     height: "640",
     width: "480",

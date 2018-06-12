@@ -228,8 +228,10 @@ app.use("/restaurants/", RestaurantController);
 app.get("/api/oembed", (req: Request, res: Response, next: NextFunction) => {
   const queryUrl = req.query.url;
 
-  if (!queryUrl) {
+  if (!queryUrl || queryUrl === "") {
     next();
+
+    return;
   }
 
   let sourceUrl = queryUrl;

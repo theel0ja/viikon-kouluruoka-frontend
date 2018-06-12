@@ -4,7 +4,7 @@
   "description": "Viikon kouluruoka frontend",
   "main": "src/server.ts",
   "repository": "https://github.com/theel0ja/viikon-kouluruoka-frontend.git",
-  "author": "Elias Ojala",
+  "author": "Elias Ojala <elias@eliasojala.me>",
   "private": true,
   "scripts": {
     "start": "nodemon",

@@ -206,6 +206,20 @@ if (production) {
 app.use("/", HomeController);
 app.use("/restaurants/", RestaurantController);
 
+app.get("/api/oembed", (req: Request, res: Response, next: NextFunction) => {
+  res.json({
+    success: true,
+    type: "rich",
+    version: "1.0",
+    provider_name: process.env.APP_NAME,
+    provider_url: process.env.CANONICAL_ROOT,
+    // title: "get title",
+    height: "640",
+    width: "480",
+    html: "<div>Foo</div>",
+  });
+});
+
 app.get("/api/sites", (req: Request, res: Response, next: NextFunction) => {
   res.jsonp(viikonKouluruokaSites);
 });

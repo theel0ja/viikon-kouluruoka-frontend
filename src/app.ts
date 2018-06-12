@@ -41,6 +41,7 @@ twig.extendFunction("isProd", () => {
  * Root url
  */
 const port: (string | number) = process.env.PORT || 3000; // Same as server.ts
+// TODO: If ROOT_URL not found, use Host header?
 const ROOT_URL = production ? process.env.ROOT_URL : `http://localhost:${port}`;
 
 /**

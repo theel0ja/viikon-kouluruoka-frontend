@@ -226,7 +226,11 @@ app.use("/", HomeController);
 app.use("/restaurants/", RestaurantController);
 
 app.get("/api/oembed", (req: Request, res: Response, next: NextFunction) => {
-  let sourceUrl = req.query.url;
+  const queryUrl = req.query.url;
+
+  // FIXME: If queryUrl is undefined, empty, etc., go to 404
+
+  let sourceUrl = queryUrl;
   sourceUrl = sourceUrl.split("#")[0];
   sourceUrl = sourceUrl.split("?")[0];
   // Remove last forward slash

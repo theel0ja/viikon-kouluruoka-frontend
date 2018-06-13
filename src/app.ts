@@ -20,6 +20,7 @@ dotenv.config();
 // Import RestaurantController from controllers entry point
 import {
   HomeController,
+  OEmbedController,
   RestaurantController,
 } from "./controllers";
 import viikonKouluruokaSites from "./viikonKouluruokaSites";
@@ -225,47 +226,9 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use("/", HomeController);
 app.use("/restaurants/", RestaurantController);
 
-app.get("/api/oembed", (req: Request, res: Response, next: NextFunction) => {
-  const queryUrl = req.query.url;
+app.use("/api/oembed/", OEmbedController);
 
-  if (!queryUrl || queryUrl === "") {
-    next();
-
-    return;
-  }
-
-  // TODO: Enable oEmbed only on "Show restaurant" route
-
-  let sourceUrl = queryUrl;
-  sourceUrl = sourceUrl.split("#")[0];
-  sourceUrl = sourceUrl.split("?")[0];
-  // Remove last forward slash
-  sourceUrl = sourceUrl.replace(/\/+$/, ""); // https://stackoverflow.com/a/6680825#comment11853012_6680877
-
-  const cleanedUrl = sourceUrl + "/embed" + "?utm_source=oembed";
-
-  const width = 640;
-  const height = 480;
-
-  res.json({
-    success: true,
-    type: "rich",
-    version: "1.0",
-    provider_name: process.env.APP_NAME,
-    provider_url: process.env.ROOT_URL,
-    // title: "TODO: Get title",
-    height,
-    width,
-    html:
-    `<div class="kouluruoka-menu" data-src="${sourceUrl}">\
-      <iframe frameborder="0" src="${cleanedUrl}" \
-      width="${width}" height="${height}"></iframe>\
-    </div>`.replace(/  /g, ""), // remove whitespace
-  });
-});
-
-app.get("/api/sites", (req: Request, res: Response, next: NextFunction) => {
-  res.jsonp(viikonKouluruokaSites);
-});
+app.get("/api/sites", (req: Request, res: Response, next: NextFunction) =>
+  res.jsonp(viikonKouluruokaSites));
 
 export default app;

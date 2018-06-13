@@ -242,7 +242,7 @@ app.get("/api/oembed", (req: Request, res: Response, next: NextFunction) => {
   // Remove last forward slash
   sourceUrl = sourceUrl.replace(/\/+$/, ""); // https://stackoverflow.com/a/6680825#comment11853012_6680877
 
-  const cleanedUrl = sourceUrl + "/embed";
+  const cleanedUrl = sourceUrl + "/embed" + "?utm_source=oembed";
 
   const width = 640;
   const height = 480;

@@ -232,12 +232,23 @@ app.get("/api/sites", (req: Request, res: Response, next: NextFunction) =>
   res.jsonp(viikonKouluruokaSites));
 
 // Error handlers
+
+// 404 - Not Found
+app.use(function (req, res, next) {
+  res.status(404);
+
+  res.render("errors/404.twig");
+})
+
+// 500 - Internal Server Error
 app.use((err, req, res, next) => {
   if (production) {
     // If in production, send generic error message
     // TODO: Does it send the error to Sentry?
 
-    res.status(500).send("Something broke");
+    res.status(500);
+
+    res.render("errors/500.twig");
   } else {
     // If not in production, send to next() (default error handler) and console.error
 

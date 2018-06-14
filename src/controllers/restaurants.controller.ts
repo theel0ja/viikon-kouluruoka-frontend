@@ -35,14 +35,15 @@ router.get("/", sendXFrameOptions, (req: Request, res: Response, next: NextFunct
  */
 router.get("/:id", sendXFrameOptions, (req: Request, res: Response, next: NextFunction) => {
   Promise.all([
-    axios.get(process.env.API_BACKEND + "/restaurants"),
-    axios.get(process.env.API_BACKEND + "/categories"),
+    axios.get(process.env.API_BACKEND + "/restaurants")
+      .then((response) => response.data)
+      .catch(next),
+    axios.get(process.env.API_BACKEND + "/categories")
+      .then((response) => response.data)
+      .catch(next),
   ])
-    .then(([restaurantsResponse, categoriesResponse]) => {
+    .then(([restaurantsData, categoriesData]) => {
       // TODO: Use Interfaces from backend
-      const restaurantsData = restaurantsResponse.data;
-      const categoriesData = categoriesResponse.data;
-
       const restaurantData = restaurantsData.find((x) => x.id === req.params.id);
       const categoryName = categoriesData.find((x) => x.id === restaurantData.category).name;
 
@@ -86,13 +87,15 @@ router.get("/:id", sendXFrameOptions, (req: Request, res: Response, next: NextFu
  */
 router.get("/:id/embed", (req: Request, res: Response, next: NextFunction) => {
   Promise.all([
-    axios.get(process.env.API_BACKEND + "/restaurants"),
-    axios.get(process.env.API_BACKEND + "/categories"),
+    axios.get(process.env.API_BACKEND + "/restaurants")
+      .then((response) => response.data)
+      .catch(next),
+    axios.get(process.env.API_BACKEND + "/categories")
+      .then((response) => response.data)
+      .catch(next),
   ])
-    .then(([restaurantsResponse, categoriesResponse]) => {
+    .then(([restaurantsData, categoriesData]) => {
       // TODO: Use Interfaces from backend
-      const restaurantsData = restaurantsResponse.data;
-      const categoriesData = categoriesResponse.data;
 
       const restaurantData = restaurantsData.find((x) => x.id === req.params.id);
       const categoryName = categoriesData.find((x) => x.id === restaurantData.category).name;

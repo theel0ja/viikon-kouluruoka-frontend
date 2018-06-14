@@ -163,10 +163,15 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       "manifest-src": "'self'",
       "worker-src": "'self'",
       "img-src": analyticsImgSrc + " " + "'self' data:",
-      "style-src": cssCdn + " " + "'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/",
+
+      "style-src": cssCdn + " " + "'unsafe-inline' " +
+      "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/ ",
+
       // script-src has 'unsafe-inline' just for backwards compability, it's ignored in browsers supporting nonces.
       // tslint:disable-next-line:max-line-length
-      "script-src": `'unsafe-inline' ${analyticsScriptSrc} ${jsLibs} ${jsCdn} ${process.env.API_BACKEND}/menus/ https://cdn.theel0ja.info/libs/bsmenu-4/`,
+      "script-src": `'unsafe-inline' ${analyticsScriptSrc} ${jsLibs} ${jsCdn} ` +
+      "https://cdn.theel0ja.info/libs/bsmenu-4/ ",
+
       "report-uri": cspReportUri,
       "connect-src": `${serviceWorkerConnectSrc} https://sentry.io`,
       "block-all-mixed-content": "",
@@ -234,11 +239,11 @@ app.get("/api/sites", (req: Request, res: Response, next: NextFunction) =>
 // Error handlers
 
 // 404 - Not Found
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.status(404);
 
   res.render("errors/404.twig");
-})
+});
 
 // 500 - Internal Server Error
 app.use((err, req, res, next) => {

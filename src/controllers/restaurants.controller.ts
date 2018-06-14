@@ -52,18 +52,14 @@ router.get("/:id", sendXFrameOptions, (req: Request, res: Response, next: NextFu
 
       restaurantData.menus.forEach((menu) => {
         menuDataPromises.push(
-          axios.get(`${process.env.API_BACKEND}/menus/${menu.id}`),
+          axios.get(`${process.env.API_BACKEND}/menus/${menu.id}`)
+            .then((response) => response.data)
+            .catch(next),
         );
       });
 
       Promise.all(menuDataPromises)
-        .then((responses) => {
-          const menus = [];
-
-          responses.forEach((response) => {
-            menus.push(response.data);
-          });
-
+        .then((menus) => {
           res.render("restaurants/show.twig", {
             title: restaurantData.name,
             restaurant: restaurantData,
@@ -105,18 +101,14 @@ router.get("/:id/embed", (req: Request, res: Response, next: NextFunction) => {
 
       restaurantData.menus.forEach((menu) => {
         menuDataPromises.push(
-          axios.get(`${process.env.API_BACKEND}/menus/${menu.id}`),
+          axios.get(`${process.env.API_BACKEND}/menus/${menu.id}`)
+            .then((response) => response.data)
+            .catch(next),
         );
       });
 
       Promise.all(menuDataPromises)
-        .then((responses) => {
-          const menus = [];
-
-          responses.forEach((response) => {
-            menus.push(response.data);
-          });
-
+        .then((menus) => {
           res.render("embed/restaurants/show.twig", {
             title: restaurantData.name,
             restaurant: restaurantData,

@@ -240,7 +240,7 @@ app.get("/api/sites", (req: Request, res: Response, next: NextFunction) =>
 
 // 404 - Not Found
 app.use((req, res, next) => {
-  res.status(404);
+  res.status(404); // .header("Content-Security-Policy", "default-src 'self'"); // WIP
 
   res.render("errors/404.twig");
 });

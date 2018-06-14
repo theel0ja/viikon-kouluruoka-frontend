@@ -231,4 +231,20 @@ app.use("/api/oembed/", OEmbedController);
 app.get("/api/sites", (req: Request, res: Response, next: NextFunction) =>
   res.jsonp(viikonKouluruokaSites));
 
+// Error handlers
+app.use((err, req, res, next) => {
+  if (production) {
+    // If in production, send generic error message
+    // TODO: Does it send the error to Sentry?
+
+    res.status(500).send("Something broke");
+  } else {
+    // If not in production, send to next() (default error handler) and console.error
+
+    // TODO: tslint
+    // console.error(err.stack);
+    next(err);
+  }
+});
+
 export default app;

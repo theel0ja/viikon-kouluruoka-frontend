@@ -74,7 +74,8 @@ router.get("/:id", sendXFrameOptions, (req: Request, res: Response, next: NextFu
 
             enable_oembed: true,
           });
-        });
+        })
+        .catch(next);
     })
     .catch(next);
 });
@@ -122,7 +123,8 @@ router.get("/:id/embed", (req: Request, res: Response, next: NextFunction) => {
             categoriesJson: JSON.stringify(categoriesData),
             menusJson: JSON.stringify(menus, null, 2),
           });
-        });
+        })
+        .catch(next);
     })
     .catch(next);
 });

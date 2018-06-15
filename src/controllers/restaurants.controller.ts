@@ -93,7 +93,6 @@ router.get("/:id/embed", (req: Request, res: Response, next: NextFunction) => {
   ])
     .then(([restaurantsData, categoriesData]) => {
       // TODO: Use Interfaces from backend
-
       const restaurantData = restaurantsData.find((x) => x.id === req.params.id);
       const categoryName = categoriesData.find((x) => x.id === restaurantData.category).name;
 

@@ -3,7 +3,7 @@ import { NextFunction, Request, Response, Router } from "express";
 const router: Router = Router();
 
 /**
- * List all restaurants.
+ * oEmbed endpoint
  */
 router.get("/", (req: Request, res: Response, next: NextFunction) => {
   const queryUrl = req.query.url;

@@ -71,7 +71,7 @@ app.use(lusca.hsts({
 }));
 
 /**
- * Static URLs, etc.
+ * Static URLs, report-URIs etc.
  */
 let staticUrl: string = ""; // CDN url, such as ""
 
@@ -196,6 +196,7 @@ app.use(minify({
 }));
 app.use(express.static("public"));
 
+// In production, minify HTML
 if (production) {
   app.use(minifyHTML({
     override: true,
@@ -223,6 +224,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
+
+
 /**
  * Controllers and routes
  */
@@ -236,7 +239,9 @@ app.use("/api/oembed/", OEmbedController);
 app.get("/api/sites", (req: Request, res: Response, next: NextFunction) =>
   res.jsonp(viikonKouluruokaSites));
 
-// Error handlers
+/**
+ * Error handlers
+ */
 
 // 404 - Not Found
 app.use((req, res, next) => {

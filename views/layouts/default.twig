@@ -103,6 +103,13 @@
       <link rel="alternate" type="application/json+oembed"
         href="/api/oembed/?url={{ getCanonicalUrl() }}"
         title="{{ title|e }}" />
+
+      {# Iframely (https://iframely.com/oembed2) #}
+      <link rel="iframely"
+        type="text/html"
+        href="{{ getCanonicalUrl() }}/embed?utm_source=iframely"
+        media="(min-width:480) and (min-height:640)"
+      />
     {% endif %}
 
 

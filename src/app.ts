@@ -132,8 +132,8 @@ if (useGAnalytics) {
   analyticsImgSrc = "https://www.google-analytics.com";
   analyticsScriptSrc = "https://www.googletagmanager.com https://www.google-analytics.com";
 } else if (!useGAnalytics && production) {
-  analyticsImgSrc = "https://analytics.theel0ja.info";
-  analyticsScriptSrc = "https://analytics.theel0ja.info";
+  analyticsImgSrc = "https://www0.theel0ja.info/_a";
+  analyticsScriptSrc = "https://www1.theel0ja.info";
 }
 
 twig.extendFunction("useGAnalytics", () => {

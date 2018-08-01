@@ -17,7 +17,7 @@ import uglifyEs from "uglify-es";
 
 dotenv.config();
 
-// Import RestaurantController from controllers entry point
+// Import controllers
 import {
   HomeController,
   OEmbedController,

@@ -115,7 +115,7 @@ if (useGAnalytics) {
   analyticsImgSrc = "https://www.google-analytics.com";
   analyticsScriptSrc = "https://www.googletagmanager.com https://www.google-analytics.com";
 } else if (!useGAnalytics && production) {
-  analyticsImgSrc = "https://www0.theel0ja.info/_a";
+  analyticsImgSrc = "https://www0.theel0ja.info/";
   analyticsScriptSrc = "https://www1.theel0ja.info";
 }
 

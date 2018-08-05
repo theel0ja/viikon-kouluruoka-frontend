@@ -7,7 +7,8 @@ const SRC_FOLDER = path.resolve(__dirname, "client-src");
 const DIST_FOLDER = path.resolve(__dirname, "client-dist");
 const NODE_MODULES_FOLDER = path.resolve(__dirname, "node_modules");
 
-const devMode = process.env.NODE_ENV !== 'production';
+// const devMode = process.env.NODE_ENV !== 'production';
+const devMode = false;
 
 module.exports = {
   entry: {

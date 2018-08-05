@@ -71,28 +71,15 @@ app.use(lusca.hsts({
 }));
 
 /**
- * Static URLs, report-URIs etc.
+ * report-URI
  */
-let staticUrl: string = ""; // CDN url, such as ""
 
 let cspReportUri: string;
-let cssCdn: string = "";
-let jsCdn: string = "";
 
 if (production) {
   cspReportUri = process.env.REPORT_URI;
-
-  staticUrl = "https://kouluruoka-cdn.theel0ja.info";
-
-  cssCdn = "";
-  jsCdn = staticUrl;
 } else {
   cspReportUri = "/api/csp-report-dev";
-
-  staticUrl = ""; // 'self'
-
-  cssCdn = "";
-  jsCdn = "'self'";
 }
 
 /**
@@ -149,9 +136,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     return res.locals.nonce;
   });
 
-  // tslint:disable-next-line:max-line-length
-  const jsLibs = "https://cdnjs.cloudflare.com/ajax/libs/jquery/ https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/ https://cdnjs.cloudflare.com/ajax/libs/raven.js/";
-
   lusca.csp({
     /* tslint:disable:object-literal-sort-keys */
     policy: {
@@ -160,13 +144,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       "worker-src": "'self'",
       "img-src": analyticsImgSrc + " " + "'self' data:",
 
-      "style-src": cssCdn + " " + "'unsafe-inline' " +
-      "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/ ",
+      "style-src": `'self' 'unsafe-inline'`,
 
       // script-src has 'unsafe-inline' just for backwards compability, it's ignored in browsers supporting nonces.
       // tslint:disable-next-line:max-line-length
-      "script-src": `'unsafe-inline' ${analyticsScriptSrc} ${jsLibs} ${jsCdn} ` +
-      "https://cdn.theel0ja.info/libs/bsmenu-4/ ",
+      "script-src": `'self' 'unsafe-inline' ${analyticsScriptSrc} https://cdnjs.cloudflare.com/ajax/libs/raven.js/ https://cdn.theel0ja.info/libs/bsmenu-4/`,
 
       "report-uri": cspReportUri,
       "connect-src": `${serviceWorkerConnectSrc} https://sentry.io`,

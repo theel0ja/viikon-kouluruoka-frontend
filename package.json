@@ -10,7 +10,7 @@
     "start": "nodemon",
     "test": "echo 'TODO: Make tests'",
 
-    "build": "npm run build:nolint && npm run tslint && npm run eslint",
+    "build": "npm run build:nolint && npm run tslint && npm run eslint && npm run build-client",
     "build:nolint": "npm run build:ts && npm run build-client",
     "build:ts": "tsc",
     "tslint": "tslint -c tslint.json -p tsconfig.json",

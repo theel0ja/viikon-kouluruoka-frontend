@@ -173,7 +173,6 @@ app.use(minify({
   uglifyJsModule: uglifyEs,
 }));
 
-
 app.use(express.static("public"));
 app.use("/assets/client/", express.static("client-dist"));
 

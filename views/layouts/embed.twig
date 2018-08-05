@@ -66,9 +66,6 @@
     {# <link rel="canonical" href="canonicalUrl" />
     <meta property="og:url" content="canonicalUrl" /> #}
 
-    {# CSS #}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha256-Md8eaeo67OiouuXAi8t/Xpd8t2+IaJezATVTWbZqSOw=" crossorigin="anonymous" />
-
     {# Other CSS #}
     {% block stylesheets %}{% endblock %}
 
@@ -78,6 +75,10 @@
         navigator.serviceWorker.register("/serviceWorker.js", {scope: "/"});
       }
     </script>
+
+    {# /assets/client = client-dist folder #}
+    <link rel="stylesheet" href="/assets/client/bundle.css">
+    <script src="/assets/client/bundle.js"></script>
 
 
     {# Settings #}
@@ -93,12 +94,17 @@
       {% block body %}{% endblock %}
     </main>
     
-    {# Bootstrap JS #}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
-    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> #}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha256-xaF9RpdtRxzwYMWg4ldJoyPWqyDPCRD0Cv7YEEe6Ie8=" crossorigin="anonymous"></script>
-    
-    <script src="https://cdn.theel0ja.info/libs/bsmenu-4/bsmenu.js?v={{ getAssetVersion() }}"></script>
+    {# bsmenu #}
+    <script nonce="{{ getScriptNonce() }}">
+      // https://github.com/theel0ja/bsmenu-4/blob/da4a9dd618e834ca9299e96248fffa4e8422c761/bsmenu.js
+      $(document).ready(function () {
+        var url = window.location;
+        $('nav.navbar ul a[href="'+ url +'"]').parent().addClass('active');
+        $('nav.navbar ul a').filter(function() {
+          return this.href == url;
+        }).parent().addClass('active');
+      });
+    </script>
 
     {# Other JavaScript #}
     {% block javascripts %}{% endblock %}

@@ -9,13 +9,11 @@
   "scripts": {
     "start": "nodemon",
     "test": "echo 'TODO: Make tests'",
-
     "build": "npm run build:nolint && npm run tslint && npm run eslint && npm run build-client",
     "build:nolint": "npm run build:ts && npm run build-client",
     "build:ts": "tsc",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "eslint": "eslint .",
-
     "build-client": "webpack --mode=production"
   },
   "dependencies": {
@@ -31,6 +29,7 @@
     "lusca": "^1.6.0",
     "popper.js": "^1.14.4",
     "raven": "^2.6.2",
+    "raven-js": "^3.26.4",
     "slugid": "^2.0.0",
     "twig": "^1.11.0",
     "typescript": "^2.8.3",

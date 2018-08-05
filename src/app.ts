@@ -148,7 +148,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
       // script-src has 'unsafe-inline' just for backwards compability, it's ignored in browsers supporting nonces.
       // tslint:disable-next-line:max-line-length
-      "script-src": `'self' 'unsafe-inline' ${analyticsScriptSrc} https://cdnjs.cloudflare.com/ajax/libs/raven.js/`,
+      "script-src": `'self' 'unsafe-inline' ${analyticsScriptSrc}`,
 
       "report-uri": cspReportUri,
       "connect-src": `${serviceWorkerConnectSrc} https://sentry.io`,
@@ -175,6 +175,7 @@ app.use(minify({
 
 app.use(express.static("public"));
 app.use("/assets/client/", express.static("client-dist"));
+app.use("/assets/libs/raven-js/", express.static("node_modules/raven-js/dist/"));
 
 // In production, minify HTML
 if (production) {

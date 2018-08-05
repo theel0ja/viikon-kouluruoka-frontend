@@ -7,7 +7,7 @@
 
     {% if isProd() == "true" %}
       {# Sentry #}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/raven.js/3.25.2/raven.min.js" integrity="sha256-J7gOlA8MDnRhSTWtoQkf9MCKFZwQxNxNV28+1WyJFsA=" crossorigin="anonymous"></script>
+      <script src="/assets/libs/raven-js/raven.min.js"></script>
 
       <script nonce="{{ getScriptNonce() }}">
         Raven.config('https://fd3c65ae8bde436ca0b32183a6099b44@sentry.io/1209758').install();

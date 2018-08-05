@@ -1,7 +1,7 @@
 # Original code: https://github.com/theel0ja/viikon-kouluruoka-backend/blob/f05ecd31f3ba324d84ccf46b9226fddcf0ab1c2f/.travis.yml
 language: node_js
 node_js:
-  - "8.5.0"
+  - "8.11.3"
 
 sudo: false
 

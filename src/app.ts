@@ -95,10 +95,6 @@ if (production) {
   jsCdn = "'self'";
 }
 
-twig.extendFunction("getStaticUrl", () => {
-  return staticUrl;
-});
-
 /**
  * getAssetVersion
  */
@@ -194,7 +190,10 @@ app.use(compression());
 app.use(minify({
   uglifyJsModule: uglifyEs,
 }));
+
+
 app.use(express.static("public"));
+app.use("/assets/client/", express.static("client-dist"));
 
 // In production, minify HTML
 if (production) {
@@ -223,8 +222,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
   next();
 });
-
-
 
 /**
  * Controllers and routes

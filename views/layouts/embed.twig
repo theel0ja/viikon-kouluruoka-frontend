@@ -73,7 +73,6 @@
     {% block stylesheets %}{% endblock %}
 
     {# Header JS #}
-    {# <script src="{{ getStaticUrl() }}/js/app.js?v={{ getAssetVersion() }}"></script> #}
     <script nonce="{{ getScriptNonce() }}">
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/serviceWorker.js", {scope: "/"});

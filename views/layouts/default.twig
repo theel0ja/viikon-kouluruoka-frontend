@@ -14,33 +14,10 @@
       </script>
       
       {# Matomo #}
-      <script nonce="{{ getScriptNonce() }}">
-        /* Settings */
-        const suffix = ".kouluruoka.eliasojala.me";
-        const siteId = document.domain.replace(suffix, "");
-
-        /* Matomo script starts */
-        var _paq = _paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(["setDocumentTitle", siteId + ": " + document.title]);
-        _paq.push(["setCookieDomain", "*" + suffix]);
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-          var u="//www0.theel0ja.info/_a/";
-          _paq.push(['setTrackerUrl', u+'piwik.php']);
-          _paq.push(['setSiteId', '4']);
-          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-          g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://www1.theel0ja.info/a.js'; s.parentNode.insertBefore(g,s);
-        })();
-      </script>
+      {% include 'components/matomo.twig' %}
     {% endif %}
 
-    {# Settings etc #}
-    <meta name="twitter:widgets:csp" content="on">
-    <meta name="format-detection" content="telephone=no">
-    {# Privacy #}
-    <meta name="twitter:dnt" content="on">
+    {% include 'components/layouts-general.twig' %}
 
 
     {# SEO #}
@@ -94,32 +71,8 @@
       />
     {% endif %}
 
-
-
-    {# Favicons #}
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="apple-mobile-web-app-title" content="Viikon kouluruoka">
-    <meta name="application-name" content="Viikon kouluruoka">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-
     {# Other CSS #}
     {% block stylesheets %}{% endblock %}
-
-    {# Header JS #}
-    <script nonce="{{ getScriptNonce() }}">
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/serviceWorker.js", {scope: "/"});
-      }
-    </script>
-
-    {# /assets/client = client-dist folder #}
-    <link rel="stylesheet" href="/assets/client/bundle.css">
-    <script src="/assets/client/bundle.js"></script>
 
 
     {# Settings #}

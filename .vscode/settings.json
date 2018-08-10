@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "client-dist": true,
+        "dist": true
+    }
+}

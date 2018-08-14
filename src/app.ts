@@ -15,7 +15,9 @@ import slugid from "slugid";
 import twig from "twig";
 import uglifyEs from "uglify-es";
 
+// dotenv
 dotenv.config();
+twig.extendFunction("getenv", (name: string) => process.env[name]);
 
 // Import controllers
 import {
@@ -24,8 +26,6 @@ import {
   RestaurantController,
 } from "./controllers";
 import viikonKouluruokaSites from "./viikonKouluruokaSites";
-
-twig.extendFunction("getenv", (name: string) => process.env[name]);
 
 /**
  * Is server in production mode?

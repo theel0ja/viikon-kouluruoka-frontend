@@ -56,18 +56,9 @@
     <main class="container-fluid">
       {% block body %}{% endblock %}
     </main>
-    
+
     {# bsmenu #}
-    <script nonce="{{ getScriptNonce() }}">
-      // https://github.com/theel0ja/bsmenu-4/blob/da4a9dd618e834ca9299e96248fffa4e8422c761/bsmenu.js
-      $(document).ready(function () {
-        var url = window.location;
-        $('nav.navbar ul a[href="'+ url +'"]').parent().addClass('active');
-        $('nav.navbar ul a').filter(function() {
-          return this.href == url;
-        }).parent().addClass('active');
-      });
-    </script>
+    {% include "components/bsmenu.twig" %}
 
     {# Other JavaScript #}
     {% block javascripts %}{% endblock %}

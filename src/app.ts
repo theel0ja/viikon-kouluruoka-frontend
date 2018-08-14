@@ -25,9 +25,7 @@ import {
 } from "./controllers";
 import viikonKouluruokaSites from "./viikonKouluruokaSites";
 
-twig.extendFunction("getenv", (name: string) => {
-  return process.env[name];
-});
+twig.extendFunction("getenv", (name: string) => process.env[name]);
 
 /**
  * Is server in production mode?
@@ -77,14 +75,6 @@ app.use(lusca.hsts({
 const cspReportUri = production ? process.env.REPORT_URI : "/api/csp-report-dev";
 
 /**
- * getAssetVersion
- */
-
-twig.extendFunction("getAssetVersion", () => {
-  return (1).toString();
-});
-
-/**
  * Content Security Policy
  */
 
@@ -96,9 +86,7 @@ const serviceWorkerConnectSrc = "";
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.locals.nonce = slugid.v4();
 
-  twig.extendFunction("getScriptNonce", () => {
-    return res.locals.nonce;
-  });
+  twig.extendFunction("getScriptNonce", () => res.locals.nonce);
 
   lusca.csp({
     /* tslint:disable:object-literal-sort-keys */

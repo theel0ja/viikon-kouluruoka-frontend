@@ -74,13 +74,7 @@ app.use(lusca.hsts({
  * report-URI
  */
 
-let cspReportUri: string;
-
-if (production) {
-  cspReportUri = process.env.REPORT_URI;
-} else {
-  cspReportUri = "/api/csp-report-dev";
-}
+const cspReportUri = production ? process.env.REPORT_URI : "/api/csp-report-dev";
 
 /**
  * getAssetVersion
@@ -145,6 +139,8 @@ app.use(minify({
 
 app.use(express.static("public"));
 app.use("/assets/client/", express.static("client-dist"));
+
+// Libraries
 app.use("/assets/libs/raven-js/", express.static("node_modules/raven-js/dist/"));
 
 // In production, minify HTML

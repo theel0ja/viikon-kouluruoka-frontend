@@ -130,6 +130,8 @@ app.use("/assets/client/", express.static("client-dist"));
 
 // Libraries
 app.use("/assets/libs/raven-js/", express.static("node_modules/raven-js/dist/"));
+app.use("/assets/libs/jquery/", express.static("node_modules/jquery/dist/"));
+app.use("/assets/libs/bootstrap/", express.static("node_modules/bootstrap/dist/"));
 
 // In production, minify HTML
 if (production) {

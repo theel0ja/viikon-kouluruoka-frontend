@@ -107,7 +107,7 @@ twig.extendFunction("getAssetVersion", () => {
   return (1).toString();
 });
 
-const analyticsImgSrc: string = "https://www0.theel0ja.info/_a";
+const analyticsImgSrc: string = "https://www0.theel0ja.info";
 const analyticsScriptSrc: string = "https://www1.theel0ja.info";
 
 /**

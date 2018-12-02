@@ -107,8 +107,8 @@ twig.extendFunction("getAssetVersion", () => {
   return (1).toString();
 });
 
-let analyticsImgSrc: string = "https://www0.theel0ja.info/_a";
-let analyticsScriptSrc: string = "https://www1.theel0ja.info";
+const analyticsImgSrc: string = "https://www0.theel0ja.info/_a";
+const analyticsScriptSrc: string = "https://www1.theel0ja.info";
 
 /**
  * Content Security Policy
@@ -139,8 +139,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
       // script-src has 'unsafe-inline' just for backwards compability, it's ignored in browsers supporting nonces.
       // tslint:disable-next-line:max-line-length
-      "script-src": `'unsafe-inline' ${analyticsScriptSrc} ${jsLibs} ${jsCdn} ` +
-      "https://cdn.theel0ja.info/libs/bsmenu-4/ ",
+      "script-src": `'unsafe-inline' ${analyticsScriptSrc} ${jsLibs} ${jsCdn} `,
 
       "report-uri": cspReportUri,
       "connect-src": `${serviceWorkerConnectSrc} https://sentry.io`,

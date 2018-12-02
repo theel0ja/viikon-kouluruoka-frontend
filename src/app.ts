@@ -123,9 +123,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     return res.locals.nonce;
   });
 
-  // tslint:disable-next-line:max-line-length
-  const jsLibs = "https://cdnjs.cloudflare.com/ajax/libs/jquery/ https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/ https://cdnjs.cloudflare.com/ajax/libs/raven.js/";
-
   lusca.csp({
     /* tslint:disable:object-literal-sort-keys */
     policy: {
@@ -134,12 +131,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       "worker-src": "'self'",
       "img-src": analyticsImgSrc + " " + "'self' data:",
 
-      "style-src": cssCdn + " " + "'unsafe-inline' " +
-      "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/ ",
+      "style-src": "'self' 'unsafe-inline'",
 
       // script-src has 'unsafe-inline' just for backwards compability, it's ignored in browsers supporting nonces.
       // tslint:disable-next-line:max-line-length
-      "script-src": `'unsafe-inline' ${analyticsScriptSrc} ${jsLibs} ${jsCdn} `,
+      "script-src": `'unsafe-inline' ${analyticsScriptSrc} ${jsCdn} `,
 
       "report-uri": cspReportUri,
       "connect-src": `${serviceWorkerConnectSrc} https://sentry.io`,
@@ -164,6 +160,11 @@ app.use(minify({
   uglifyJsModule: uglifyEs,
 }));
 app.use(express.static("public"));
+
+// https://github.com/theel0ja/viikon-kouluruoka-frontend/blob/webpack/src/app.ts#L129
+app.use("/assets/libs/raven-js/", express.static("node_modules/raven-js/dist/"));
+app.use("/assets/libs/jquery/", express.static("node_modules/jquery/dist/"));
+app.use("/assets/libs/bootstrap/", express.static("node_modules/bootstrap/dist/"));
 
 // In production, minify HTML
 if (production) {

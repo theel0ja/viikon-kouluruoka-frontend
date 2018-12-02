@@ -8,7 +8,7 @@
     {% if isProd() == "true" %}
       {# Sentry #}
       <script src="/assets/libs/raven-js/raven.min.js"></script>
-      
+
       <script nonce="{{ getScriptNonce() }}">
         Raven.config('https://fd3c65ae8bde436ca0b32183a6099b44@sentry.io/1209758').install();
       </script>
@@ -47,8 +47,8 @@
     <meta name="theme-color" content="#ffffff">
 
     {# CSS #}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha256-Md8eaeo67OiouuXAi8t/Xpd8t2+IaJezATVTWbZqSOw=" crossorigin="anonymous" />
- 
+    <link rel="stylesheet" href="/assets/libs/bootstrap/css/bootstrap.min.css" />
+    
     {# Other CSS #}
     {% block stylesheets %}{% endblock %}
 
@@ -103,8 +103,9 @@
     </footer> #}
     
     {# Bootstrap JS #}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> #}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha256-xaF9RpdtRxzwYMWg4ldJoyPWqyDPCRD0Cv7YEEe6Ie8=" crossorigin="anonymous"></script>
+    <script src="/assets/libs/jquery/jquery.slim.min.js"></script>
+    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> #}
+    <script src="/assets/libs/bootstrap/js/bootstrap.min.js"></script>
 
     <script nonce="{{ getScriptNonce() }}">
       /* https://github.com/theel0ja/bsmenu-4 */

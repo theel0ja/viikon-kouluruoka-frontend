@@ -135,7 +135,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
       // script-src has 'unsafe-inline' just for backwards compability, it's ignored in browsers supporting nonces.
       // tslint:disable-next-line:max-line-length
-      "script-src": `'unsafe-inline' ${analyticsScriptSrc} ${jsCdn} `,
+      "script-src": `'self' 'unsafe-inline' ${analyticsScriptSrc} ${jsCdn} `,
 
       "report-uri": cspReportUri,
       "connect-src": `${serviceWorkerConnectSrc} https://sentry.io`,

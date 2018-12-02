@@ -107,38 +107,8 @@ twig.extendFunction("getAssetVersion", () => {
   return (1).toString();
 });
 
-/**
- * useGAnalytics
- */
-
-let analyticsImgSrc: string = "";
-let analyticsScriptSrc: string = "";
-
-let useGAnalytics: boolean = true;
-
-if (!production) {
-  useGAnalytics = false;
-} else if (production) {
-  const GOOGLE_ANALYTICS_UA = process.env.GOOGLE_ANALYTICS_UA;
-
-  if (GOOGLE_ANALYTICS_UA === "UA-XXXXXXXXX-X") {
-    useGAnalytics = false;
-  } else if (!GOOGLE_ANALYTICS_UA) {
-    useGAnalytics = false;
-  }
-}
-
-if (useGAnalytics) {
-  analyticsImgSrc = "https://www.google-analytics.com";
-  analyticsScriptSrc = "https://www.googletagmanager.com https://www.google-analytics.com";
-} else if (!useGAnalytics && production) {
-  analyticsImgSrc = "https://www0.theel0ja.info/_a";
-  analyticsScriptSrc = "https://www1.theel0ja.info";
-}
-
-twig.extendFunction("useGAnalytics", () => {
-  return useGAnalytics.toString();
-});
+let analyticsImgSrc: string = "https://www0.theel0ja.info/_a";
+let analyticsScriptSrc: string = "https://www1.theel0ja.info";
 
 /**
  * Content Security Policy
@@ -223,8 +193,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
   next();
 });
-
-
 
 /**
  * Controllers and routes

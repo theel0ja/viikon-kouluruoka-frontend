@@ -13,39 +13,27 @@
         Raven.config('https://fd3c65ae8bde436ca0b32183a6099b44@sentry.io/1209758').install();
       </script>
 
-      {% if useGAnalytics() == "true" %}
-        {# Google Analytics #}
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ getenv("GOOGLE_ANALYTICS_UA") }}"></script>
-        <script nonce="{{ getScriptNonce() }}">
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+      {# Matomo #}
+      <script nonce="{{ getScriptNonce() }}">
+        /* Settings */
+        const suffix = ".kouluruoka.eliasojala.me";
+        const siteId = document.domain.replace(suffix, "");
 
-          gtag('config', '{{ getenv("GOOGLE_ANALYTICS_UA") }}');
-        </script>
-      {% else %}
-        {# Matomo #}
-        <script nonce="{{ getScriptNonce() }}">
-          /* Settings */
-          const suffix = ".kouluruoka.eliasojala.me";
-          const siteId = document.domain.replace(suffix, "");
-
-          /* Matomo script starts */
-          var _paq = _paq || [];
-          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-          _paq.push(["setDocumentTitle", siteId + ": " + document.title]);
-          _paq.push(["setCookieDomain", "*" + suffix]);
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u="//www0.theel0ja.info/_a/";
-            _paq.push(['setTrackerUrl', u+'piwik.php']);
-            _paq.push(['setSiteId', '4']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://www1.theel0ja.info/a.js'; s.parentNode.insertBefore(g,s);
-          })();
-        </script>
-      {% endif %}
+        /* Matomo script starts */
+        var _paq = _paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["setDocumentTitle", siteId + ": " + document.title]);
+        _paq.push(["setCookieDomain", "*" + suffix]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="//www0.theel0ja.info/_a/";
+          _paq.push(['setTrackerUrl', u+'piwik.php']);
+          _paq.push(['setSiteId', '4']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://www1.theel0ja.info/a.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>
     {% endif %}
 
     {# Settings etc #}

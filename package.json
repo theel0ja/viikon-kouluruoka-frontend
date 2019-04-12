@@ -23,7 +23,7 @@
     "express-minify": "^1.0.0",
     "express-minify-html": "^0.12.0",
     "heroku-ssl-redirect": "^0.0.4",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "lusca": "^1.6.0",
     "raven": "^2.6.2",
     "raven-js": "^3.27.0",

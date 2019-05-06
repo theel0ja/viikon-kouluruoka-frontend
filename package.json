@@ -12,7 +12,9 @@
     "build": "npm run build-ts && npm run tslint && npm run eslint",
     "build-ts": "tsc",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "eslint": "eslint ."
+    "eslint": "eslint .",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -30,7 +32,8 @@
     "slugid": "^2.0.0",
     "twig": "^1.11.0",
     "typescript": "^2.8.3",
-    "uglify-es": "^3.3.9"
+    "uglify-es": "^3.3.9",
+    "snyk": "^1.161.1"
   },
   "devDependencies": {
     "@types/compression": "^0.0.36",
@@ -44,5 +47,6 @@
     "nodemon": "^1.17.4",
     "ts-node": "^6.0.3",
     "tslint": "^5.10.0"
-  }
+  },
+  "snyk": true
 }
